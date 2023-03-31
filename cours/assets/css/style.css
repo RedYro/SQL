@@ -1,27 +1,30 @@
-
-body {
+body{
      background-color: #333;
 }
 
-header nav img {
+header nav img{
      width: 50px;
 }
 
-header nav  a {
+header nav a{
      color: black !important;
 }
 
-.container {
+.container{
      background-color: #ddd;
- }
+}
 
-
-hr {
+hr{
      height: 7px;
      background: linear-gradient(to right, #ce0380 0%, #a409cb 50%, #af000f 100%);
      width: 80%;
      margin: 0 auto ;
- }
- strong {
+}
+
+strong{
      color: #ce0380;
- }
+}
+
+img{
+     box-shadow: 0 0 13px 16px rgba(0, 0, 0, .1);
+}
