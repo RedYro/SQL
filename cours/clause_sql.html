@@ -44,31 +44,78 @@
      <div class="container">
             <!-- Début de main -->
           <main>
-               <div class="row m-2 border border-dark p-2">
-                    <div class="col-sm-12">
-                         <h2 class="text-center">Requêtes de base</h2>
-                         <hr>
-                         <div class="col-sm-12 d-flex justify-content-center mt-5">
-                              <ul>
-                                   <li>Créer une BDD : <strong> <code>CREATE DATABASE IF NOT EXISTS nomBdd</code> </strong></li>
-                                   <li>Supprimer une BDD : <strong> <code>DROP DATABASE IF EXISTS nomBdd</code> </strong></li>
-                                   <li>Créer une table : <strong> <code>CREATE TABLE nomTable (id INT KEY NOT NULL AUTO_INCREMENT, nom VARCHAR(100), prenom VARCHAR(100), email VARCHAR(255), birthday DATE, ville VARCHAR(200), code_postal VARCHAR(10), nombre_achat INT)</code> </strong></li>
-                                   <li>Insérer dans une table : 
-                                        <p>
-                                             <strong> <code>INSERT INTO nomTable(id, nom, prenom, email, birthday, ville, code_postal, nombre_achat) VALUES (NULL, 'Lyfoung', 'Grégory', 'gregory.lyfoung@colombbus.org', '2001-03-31', 'Évry', '91000', '10')</code> </strong>
-                                        </p>
-                                        <p>
-                                            <strong> <code>INSERT INTO users SET id_users = NULL , first_name = 'Thao' , last_name = 'Lau', email = 'thao.lau@colombbus.org' , birth_date = '2000-03-31' , city = 'Évry' , post_code = '91000' , purchase_number = '20';</code> </strong> 
-                                        </p>
-                                   </li>
-                                   <li>Afficher le contenu d'une table : <strong> <code>SELECT * FROM 'nomTable'</code> </strong></li>
-                                   <li>Effacer un enregistrement : <strong> <code>DELETE FROM nomTable WHERE nom = ""</code> </strong></li>
-                                   <li>Effacer une table : <strong> <code>DROP TABLE `nomTable`</code> </strong></li>
-                              </ul>
-                         </div>
-                    </div>
+               <div class="row m-2 border border-dark p-5">
+                   <div class="col-sm-12">
+                       <h2 class="text-center">1 - Les requêtes de base</h2>
+                       <hr>
+                   </div>
+                   <div class="col-sm-12 d-flex justify-content-center mt-5">
+                       <ul>
+                           <li>Créer une BDD : <strong> <code>CREATE DATABASE IF NOT EXISTS nomBdd</code></strong></li>
+                           <li>Supprimer une BDD :  <strong> <code>DROP DATABASE IF EXIST nomBdd</code></strong> </li>
+                           <li>Observer la description d'une table  : <strong> <code> DESC users</code></strong></li>
+                           <li>Voir les BDD dans le serveur  : <strong> <code> SHOW DATABASES</code></strong></li>
+                       </ul>
+                   </div>
+               </div> 
+               <div class="row m-2 border border-dark p-5">
+               <div class="col-sm-12">
+                   <h2 class="text-center">2 - Tables et colonnes</h2>
+                   <hr>
                </div>
-          </main>
+               <div class="col-sm-12 d-flex justify-content-center mt-5">
+                   <ul>
+                         <li>Créer une BDD 'entreprise'</li>
+                         <li>Créer une table dans la base 'entreprise':<br>
+                              <strong><code>CREATE TABLE IF NOT EXISTS employes (<br>
+                              id_employes INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,<br>
+                              prenom VARCHAR(20)  NULL,<br>
+                              nom VARCHAR(20)  NULL,<br>
+                              sexe ENUM ('f', 'm') NOT NULL,<br>
+                              service VARCHAR(30)  NULL,<br>
+                              date_embauche DATE  NULL,<br>
+                              salaire FLOAT  NULL<br>
+                              )</code></strong>
+                         </li>
+                         <li>Ici, on a d'abord créer un table. On va ensuite lui ajouter des colonnes auxquelle on va déjà attricuer des données.      
+                         </li>
+                         <li>Insérer des données dans une table :
+                              <p><strong> <code>INSERT INTO employes (id_employes, prenom, nom, sexe, service, date_embauche, salaire) VALUES<br>
+                                   (350, 'Jean-pierre', 'Laborde', 'm', 'direction', '1999-12-09', 5000),<br>
+                                   (388, 'Clement', 'Gallet', 'm', 'commercial', '2000-01-15', 2300),<br>
+                                   (415, 'Thomas', 'Winter', 'm', 'commercial', '2000-05-03', 3550),<br>
+                                   (417, 'Chloe', 'Dubar', 'f', 'production', '2001-09-05', 1900),<br>
+                                   (491, 'Elodie', 'Fellier', 'f', 'secretariat', '2002-02-22', 1600),<br>
+                                   (509, 'Fabrice', 'Grand', 'm', 'comptabilite', '2003-02-20', 1900),<br>
+                                   (547, 'Melanie', 'Collier', 'f', 'commercial', '2004-09-08', 3100),<br>
+                                   (592, 'Laura', 'Blanchet', 'f', 'direction', '2005-06-09', 4500),<br>
+                                   (627, 'Guillaume', 'Miller', 'm', 'commercial', '2006-07-02', 1900),<br>
+                                   (655, 'Celine', 'Perrin', 'f', 'commercial', '2006-09-10', 2700),<br>
+                                   (699, 'Julien', 'Cottet', 'm', 'secretariat', '2007-01-18', 1390),<br>
+                                   (701, 'Mathieu', 'Vignal', 'm', 'informatique', '2008-12-03', 2000),<br>
+                                   (739, 'Thierry', 'Desprez', 'm', 'secretariat', '2009-11-17', 1500),<br>
+                                   (780, 'Amandine', 'Thoyer', 'f', 'communication', '2010-01-23', 1500),<br>
+                                   (802, 'Damien', 'Durand', 'm', 'informatique', '2010-07-05', 2250),<br>
+                                   (854, 'Daniel', 'Chevel', 'm', 'informatique', '2011-09-28', 1700),<br>
+                                   (876, 'Nathalie', 'Martin', 'f', 'juridique', '2012-01-12', 3200),<br>
+                                   (900, 'Benoit', 'Lagarde', 'm', 'production', '2013-01-03', 2550),<br>
+                                   (933, 'Emilie', 'Sennard', 'f', 'commercial', '2014-09-11', 1800),<br>
+                                   (990, 'Stephanie', 'Lafaye', 'f', 'assistant', '2015-06-02', 1775);
+                              </code> </strong></p>                        
+                         </li>
+                         <li>
+                              Syntaxe alternative : ne permet pas d'insérer plusieurs séries de valeurs en une seule requête,
+                              contrairement à la syntaxe de base.
+                         </li>
+                       <li>
+                          
+                           <p><strong> <code>INSERT INTO users SET id_employes = 350 , prenom = 'Jean-pierre', nom = 'Laborde' , sexe = 'm' , service = 'direction', date_embauche = '1999-12-09', salaire = 5000 </code></strong></p>
+                       </li>
+                       <li>Effacer une table : <strong> <code>DROP TABLE nomTable</code></strong></li>  
+                   </ul>
+               </div>
+               </div>   
+          </main> 
      </div> 
      <!-- fin du container fluid -->
      <footer>
