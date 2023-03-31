@@ -114,7 +114,25 @@
                        <li>Effacer une table : <strong> <code>DROP TABLE nomTable</code></strong></li>  
                    </ul>
                </div>
-               </div>   
+               </div> 
+               <div class="row m-2 border border-dark p-2">
+                    <div class="col-sm-12">
+                        <hr>
+                        <h2 class="text-center" id="select">3- SELECT et DISTINCT</h2>
+                        <hr>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <ul>
+                          <li>Pour voir tous le contenu d'un table : <code>SELECT * FROM employes;</code></li>
+                          <li class="alert alert-success">Sélectionner  les valeurs de deux champs d'une nomTable : <code>SELECT colonne, colonne FROM table;</code></li>
+                          <li class="alert alert-success">Afficher les données sans doublons : <code>SELECT DISTINCT (colonne) FROM table;</code></li>
+                          <li> Effacer un enregistrement : <strong> <code>DELETE FROM nomTable WHERE nom = ""</code></strong></li>
+                      </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <p class="alert alert-danger">Les requêtes ne sont pas sensibles à la casse mais une convention indique qu'il faut mettre les mots-clefs des requêtes en majuscules. C'est plus facile ainsi de s'y retrouver.</p>
+                    </div>
+               </div> <!-- fin de la row -->  
           </main> 
      </div> 
      <!-- fin du container fluid -->
