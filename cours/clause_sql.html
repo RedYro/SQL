@@ -121,7 +121,7 @@
                         <h2 class="text-center" id="select">3- SELECT et DISTINCT</h2>
                         <hr>
                     </div>
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-6 m-2">
                       <ul>
                           <li>Pour voir tous le contenu d'un table : <code>SELECT * FROM employes;</code></li>
                           <li class="alert alert-success">Sélectionner  les valeurs de deux champs d'une nomTable : <code>SELECT colonne, colonne FROM table;</code></li>
@@ -185,7 +185,43 @@
                     <div class="col-sm-12 mt-5">
                          <ul>
                               <li>Création d'un ALIAS pour renommer temporairement une colonne ou une table dans une requête. Cette astuce est particulièrement utile pour faciliter la lecture des requêtes</li>
-                              <li> <code>SELECT nom, prenom, salaire*12, AS salaire-annuel FROM employes</code> </li>
+                              <li> <code>SELECT nom, prenom, salaire*12 AS salaire_annuel FROM employes</code> </li>
+                         </ul>
+                    </div>
+               </div>
+               <div class="row border border-dark p-2">
+                    <div class="col-sm-12">
+                         <hr>
+                         <h2 class="text-center">6 - Condtions et conditions multiples</h2>
+                         <hr>
+                    </div>
+                    <div class="col-sm-12 col-md-3 mt-5">
+                         <h6 class="text-center">Mot clé <em>WHERE</em> (à condition que)</h6>
+                         <ul>
+                              <li class="alert alert-success">Nous recherchons avec une condition une partie des données : <code>SELECT colonne, colonne FROM table WHERE colonne = 'donnée'</code></li>
+                              <li>Ici, nous cherchons à trouver le nombre de personnes dont le sexe est masculin : <code>SELECT * FROM employes WHERE sexe = 'm'</code></li>
+                              <li>Trouver la personne qui gagne 1390 : <code>SELECT * FROM employes WHERE salaire = 1390;</code></li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3 mt-5">
+                         <h6 class="text-center">Mot clé <em>WHERE</em> avec différents champs, différentes valeurs et AND</h6>
+                         <ul>
+                              <li>Nous cherchons l'employé qui gagne 2000€ et dont le service est commercial : <code>SELECT nom, prenom, service, salaire FROM employes WHERE salaire = 2300 AND service = 'commercial';</code></li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3 mt-5">
+                         <h6 class="text-center">Mot clé <em>WHERE</em> avec différents champs, différentes valeurs et OR</h6>
+                         <ul>
+                              <li>Nous cherchons les employés qui gagnent un salaire de 5000€ ou au moins de 2000€ : <code>SELECT nom, prenom, salaire FROM employes WHERE salaire = 5000 OR salaire &gt;= 2000;</code></li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-3 mt-5">
+                         <h6 class="text-center">Mot clé <em>WHERE</em> et l'ordre de priorité sur les conditions AND et OR</h6>
+                         <ul>
+                              <li><code>SELECT nom, prenom, salaire, service FROM employes WHERE service = 'production' AND (salaire = 1900 OR salaire = 2300);</code></li>
+                              <li>Lorsqu'il y a AND et OR au sein d'une même requête, le système lit la condition de la requête de la droite vers la gauche. Ainsi, il verra d'abord <code>salire = 2300 OR salaire = 1900</code> puis le service demandé.</li>
+                              <li>Pour garantir l'ordre naturel de lecture (gauche à droite), nous utiliserons des parenthèses</li>
+                              <li><code>SELECT nom, prenom, salaire, service FROM employes WHERE service = 'production' AND (salaire = 1900 OR salaire = 2300);</code></li>
                          </ul>
                     </div>
                </div>
