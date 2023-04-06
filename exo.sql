@@ -13,3 +13,7 @@
 
 --Récuperer les noms des employés qui ont un salaire entre 1400 et 4000
 -- SELECT nom, salaire FROM `employes` WHERE salaire BETWEEN 1400 AND 4000; 
+
+
+
+-- SELECT salaire, COUNT(*) AS salaires_employes FROM `employes` GROUP BY salaire;

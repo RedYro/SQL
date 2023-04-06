@@ -323,6 +323,25 @@
                                    <li class="alert alert-danger"><code>SELECT COUNT(*) FROM table WHERE colonne = 'donnée'</code></li>
                               </ul>
                          </div>
+                         <div class="col-sm-12 col-md-6 mt-5">
+                              <h6 class="text-center">Isoler une valeur minimum et maximum avec MIN() et MAX()</h6>
+                              <ul>
+                                   <li>Grâce à MIN() on peut trouver par exemple le salaire minimum : <code>SELECT MIN(salaire) FROM `employes`;</code></li>
+                                   <li>Grâce à MAX() on peut trouver par exemple le salaire maximum : <code>SELECT MAX(salaire) FROM `employes`;</code></li>
+                              </ul>
+                         </div>
+                    </div>
+               </div> <!-- fin row --> 
+               <div class="row border border-dark p-2">
+                    <div class="col-sm-12">
+                         <hr>
+                         <h2 class="text-center">10 - Les regroupements avec GROUP BY</h2>
+                         <hr>
+                    </div>
+                    <div class="col-sm-12 mt-5">
+                         <ul>
+                              <li>Ici on veut connaître le nombre d'employés par service : <code>SELECT service, COUNT(*) AS nombre_employes FROM `employes` GROUP BY service;</code></li>
+                         </ul>
                     </div>
                </div> <!-- fin row -->  
           </main> 
