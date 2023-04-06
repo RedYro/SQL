@@ -290,9 +290,39 @@
                     </div>
                     <div class="col-sm-12 mt-5">
                          <ul>
-                              <li></li>
-                              <li></li>
+                              <li>Afficher les employés en les classant par salaire (du + grand ou + petit) en limitant le résultats à 3 : <code>SELECT nom, prenom ,service, salaire FROM `employes` ORDER BY salaire DESC LIMIT 0,3;</code></li>
+                              <li class="alert alert-danger">Le premier chiffre précise l'enregistrement de départ : 0 définit le premier enregistrement informatique. Le second chiffre indique combien de résultats nous attendons</li>
                          </ul>
+                    </div>
+               </div> <!-- fin row -->
+               <div class="row border border-dark p-2">
+                    <div class="col-sm-12">
+                         <hr>
+                         <h2 class="text-center">9 - Réaliser des calculs dans les requêtes</h2>
+                         <hr>
+                    </div>
+                    <div class="col-sm-12 mt-5">
+                         <div class="col-sm-12 col-md-6 mt-5">
+                              <h6 class="text-center">Calculer une somme (SUM()) et une moyenne (AVG())</h6>
+                              <ul>
+                                   <li>Grâce au code suivant : <code>SELECT SUM(salaire*12) FROM `employes`;</code> , on va pouvoir calculer la somme totale des salaires annuel des employés</li>
+                                   <li>Avec le code suivant, on calcule le salaire mensuel moyen des employés : <code>SELECT AVG(salaire) FROM `employes`;</code></li>
+                              </ul>
+                         </div>
+                         <div class="col-sm-12 col-md-6 mt-5">
+                              <h6 class="text-center">Arrondir avec ROUND()</h6>
+                              <ul>
+                                   <li>Grâce à ROUND() on peut arrondir le résultat d'un calcul : <code>SELECT ROUND(AVG(salaire)) AS moyenne_mensuelle FROM `employes`;</code></li>
+                                   <li class="alert alert-danger">On peut cumuler deux notions comme dans l'exemple précédant avec ROUND et SUM. Attention à la syntaxe et aux parenthèses</li>
+                              </ul>
+                         </div>
+                         <div class="col-sm-12 col-md-6 mt-5">
+                              <h6 class="text-center">Compter avec COUNT()</h6>
+                              <ul>
+                                   <li>Grâce à COUNT() on peut compter par exemple le nombre d'employés qui sont des femmes : <code>SELECT COUNT(*) FROM `employes` WHERE sexe = 'f';</code></li>
+                                   <li class="alert alert-danger"><code>SELECT COUNT(*) FROM table WHERE colonne = 'donnée'</code></li>
+                              </ul>
+                         </div>
                     </div>
                </div> <!-- fin row -->  
           </main> 
