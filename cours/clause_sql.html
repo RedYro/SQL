@@ -236,6 +236,33 @@
                          <h6 class="text-center">Mot clé <em>WHERE</em> avec <em>LIKE</em></h6>
                          <ul>
                               <li><code>SELECT * FROM employes WHERE prenom LIKE 's%';</code></li>
+                              <li>Affiche les employés dont dont le prénom commence par s</li>
+                              <li>Cette façon de faire est très utile dans un motuer de recherche</li>
+                              <li>Dans cette ligne de code, le % signifie que l'on recherche le s en début de mot, ainsi la suite de caractères vient après le s</li>
+                              <li><code>SELECT * FROM employes WHERE prenom LIKE '%s%'</code></li>
+                              <li>Avec la présence du % avant et après le caractère recherché, nous demandons au système de trouver des enregistrements contenant l'expression recherchée : affiche tous les prénoms qui contiennent la lettre s</li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-4 mt-5">
+                         <h6 class="text-center">Mot clé <em>WHERE</em> avec <em>CURDATE() </em>(date courante)</h6>
+                         <ul>
+                             <li class="alert alert-success">Fonction prédéfinie avec ses parenthèses</li> 
+                             <li>Requête qui donne la date du serveur, la date du jour : <code>SELECT CUREDATE()</code></li>
+                             <li>Entre une date et aujourd'hui : <code>SELECT * FROM `employes` WHERE date_embauche BETWEEN '2010-01-01' AND CURDATE();</code></li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-4 mt-5">
+                         <h6 class="text-center">Mot clé <em>WHERE</em> avec <em>IN</em></h6>
+                         <ul>
+                             <li>Trouver les employés de la comptabilité et du service informatique : <code>SELECT nom, prenom, service FROM `employes` WHERE service IN ('comptabilité', 'informatique');</code></li>
+                             <li>Égal (=) permet d'annoncer une seule valeur alors que IN permet d'annoncer plusieurs valeurs</li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-4 mt-5">
+                         <h6 class="text-center">Mot clé <em>WHERE</em> avec <em>NOT IN</em></h6>
+                         <ul>
+                             <li>Trouver les employés qui ne sont pas en comptabilité et au service informatique : <code>SELECT nom, prenom, service FROM `employes` WHERE service NOT IN ('comptabilité', 'informatique');</code></li>
+                             <li>Différent (!=) permet d'exclure une seule valeur alors que NOT IN permet d'exclure plusieurs valeurs</li>
                          </ul>
                     </div>
                </div>
