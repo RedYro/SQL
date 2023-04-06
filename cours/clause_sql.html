@@ -224,6 +224,20 @@
                               <li><code>SELECT nom, prenom, salaire, service FROM employes WHERE service = 'production' AND (salaire = 1900 OR salaire = 2300);</code></li>
                          </ul>
                     </div>
+                    <div class="col-sm-12 col-md-4 mt-5">
+                         <h6 class="text-center">Mot clé <em>WHERE</em> avec <em>BETWEEN</em> (entre ...)</h6>
+                         <ul>
+                              <li class="alert alert-success">Nous cherchons avec une condition une partie des données <code>SELECT * FROM table WHERE colonne BETWEEN donnée AND donnée</code></li>
+                              <li>Ici, nous cherchons à trouver le nombre de personnes embauchées entre 2006 et 2010 : <code>SELECT * FROM `employes` WHERE date_embauche BETWEEN '2006-01-01' AND '2010-01-01';</code></li>
+                              <li class="alert alert-danger">Dans une BDD les dates sont toujours au format États-Unis en YYYY-MM-DD</li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-4 mt-5">
+                         <h6 class="text-center">Mot clé <em>WHERE</em> avec <em>LIKE</em></h6>
+                         <ul>
+                              <li><code>SELECT * FROM employes WHERE prenom LIKE 's%';</code></li>
+                         </ul>
+                    </div>
                </div>
           </main> 
      </div> 
