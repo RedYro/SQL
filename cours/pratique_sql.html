@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans&display=swap" rel="stylesheet"> 
     <!-- feuille de style -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Cours SQL</title>
+    <title>Pratique SQL</title>
 </head>
 
 <body>
@@ -53,57 +53,69 @@
                    <hr>
                </div>
                <div class="col-sm-12 mt-5">
-                   <ul>
-                       
+                   <ul>                       
                        <li>Afficher le nom , le prénom et le service des employés qui ont une lettre t à la fin du prénom et travailent dans le service  commercial et comptabilité : <br>
-                           <code> ->SELECT nom, prenom, service FROM `employes` WHERE prenom LIKE '%t' AND service IN ('commercial' ,'comptabilité');</code>
+                            <code> -> SELECT nom, prenom, service FROM `employes` WHERE prenom LIKE '%t' AND service IN ('commercial' ,'comptabilité');</code>
                        </li>
                        <li>
-                           le nom , le prénom et la date d'embauche des employés qui ont été embaucher après 2007 et ont le sexe = 'f ' : <br>
-                           <code> -> SELECT  `prenom`, `nom`, `sexe`, `date_embauche` FROM `employes` WHERE date_embauche BETWEEN '2007-01-01' AND CURDATE() AND sexe='f';                            
-                           </code> <br>
-                           ou <br>
-                           <code> -> SELECT  `prenom`, `nom`, `sexe`, `date_embauche` FROM `employes` WHERE date_embauche >= '2007-01-01' AND sexe='f';</code>
+                            le nom , le prénom et la date d'embauche des employés qui ont été embaucher après 2007 et ont le sexe = 'f ' : <br>
+                            <code> -> SELECT  `prenom`, `nom`, `sexe`, `date_embauche` FROM `employes` WHERE date_embauche BETWEEN '2007-01-01' AND CURDATE() AND sexe='f';                            
+                            </code> <br>
+                            ou <br>
+                            <code> -> SELECT  `prenom`, `nom`, `sexe`, `date_embauche` FROM `employes` WHERE date_embauche >= '2007-01-01' AND sexe='f';</code>
                        </li>
                        <li>
-                           Afficher les différents salaire touchées dans la base entreprise :  <br>
-                           <code> -> SELECT DISTINCT salaire FROM employes;</code>
+                            Afficher les différents salaire touchées dans la base entreprise :  <br>
+                            <code> -> SELECT DISTINCT salaire FROM employes;</code>
                        </li>
                        <li>
-                           Afficher les noms des employés qui ont un salaire entre 1400 et 4000 :  <br>
-                           <code> -> SELECT nom, salaire FROM employes WHERE salaire BETWEEN 1400 and 4000;</code>
+                            Afficher les noms des employés qui ont un salaire entre 1400 et 4000 :  <br>
+                            <code> -> SELECT nom, salaire FROM employes WHERE salaire BETWEEN 1400 and 4000;</code>
                        </li>
                        <li>
-                           Afficher le nombre d'employés par salaire : <br>
+                            Afficher le nombre d'employés par salaire : <br>
+                            <code> -> SELECT salaire, COUNT(*) AS salaires_employes FROM `employes` GROUP BY salaire;</code>
                        </li>
-                       <li>Afficher la profession de l'employé 547 :
+                       <li>Afficher la profession de l'employé 547 : <br>
+                            <code> -> SELECT service, id_employes FROM `employes` WHERE id_employes = 547;</code>
                        </li>
-                       <li>Afficher la date d'embauche d'Amandine :
+                       <li>Afficher la date d'embauche d'Amandine : <br>
+                            <code> -> SELECT date_embauche, prenom, nom FROM `employes` WHERE prenom = 'Amandine';</code>
                        </li>
-                       <li>Afficher le nombre de commerciaux :
+                       <li>Afficher le nombre de commerciaux : <br>
+                            <code> -> SELECT service, COUNT(*) FROM `employes` WHERE service = 'commercial';</code>
                        </li>
-                       <li>Afficher le coût des commerciaux sur une année :
+                       <li>Afficher le coût des commerciaux sur une année : <br>
+                            <code> -> SELECT service, SUM(salaire*12) FROM `employes` WHERE service = 'commercial'; </code>
                        </li>
-                       <li>Afficher le salaire moyen par service :
+                       <li>Afficher le salaire moyen par service : <br>
+                            <code> -> SELECT AVG(salaire), service FROM `employes` GROUP BY service;</code>
                        </li>
-                       <li>Afficher le nombre de recrutement sur l'année 2010 :
+                       <li>Afficher le nombre de recrutement sur l'année 2010 : <br>
+                            <code> -> SELECT date_embauche FROM `employes` WHERE date_embauche BETWEEN '2010-01-01' AND '2011-01-01';</code> <br>
+                            ou
+                            <code> -> SELECT date_embauche FROM `employes`  WHERE date_embauche LIKE '2010%';</code>
                        </li>
-                       <li>Augmenter le salaire pour chaque employé de 100€ :
+                       <li>Augmenter le salaire pour chaque employé de 100€ : <br>
+                            <code> -> UPDATE `employes` SET `salaire`= `salaire` + 100;</code>
                        </li>
-                       <li>Afficher le nombre de service :
+                       <li>Afficher le nombre de service : <br>
+                            <code> -> SELECT COUNT(DISTINCT(service)) AS nombre_service FROM `employes`;</code>
                        </li>
                        <li>
-                           Afficher 10 employés à partir de l'enregistrement 10 : 
-                           
+                           Afficher 10 employés à partir de l'enregistrement 10 : <br>
+                           <code> -> SELECT * FROM `employes` LIMIT 10,10;</code> 
                        </li>
                        <li>
-                           Afficher les salaires qui sont touchées par plus qu'un employé :
+                           Afficher les salaires qui sont touchées par plus qu'un employé : <br>
+                           <code> -> SELECT salaire, COUNT(*) FROM `employes` GROUP BY salaire HAVING COUNT(*) > 1;</code>
                        </li>
-                       <!-- <li>Afficher les informations de l'employé du service commercial gagnant le salaire le plus élevé :
+                       <li>Afficher les informations de l'employé du service commercial gagnant le salaire le plus élevé : <br>
+                        <code> -> SELECT prenom, nom, MAX(salaire) FROM `employes` WHERE service = 'commercial';</code>
                        </li>
-                       <li>Afficher l'employé ayant été embauché en dernier :
-                       </li> -->
-
+                       <li>Afficher l'employé ayant été embauché en dernier : <br>
+                        <code> -> SELECT prenom, nom, date_embauche FROM `employes` ORDER BY date_embauche DESC LIMIT 0,1;</code>
+                       </li>
                    </ul>
                </div>
            </div>      
