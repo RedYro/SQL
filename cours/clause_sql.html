@@ -301,7 +301,7 @@
                          <h2 class="text-center">9 - Réaliser des calculs dans les requêtes</h2>
                          <hr>
                     </div>
-                    <div class="col-sm-12 mt-5">
+                    <div class="col-sm-12 col-md-12 mt-5">
                          <div class="col-sm-12 col-md-6 mt-5">
                               <h6 class="text-center">Calculer une somme (SUM()) et une moyenne (AVG())</h6>
                               <ul>
@@ -353,6 +353,21 @@
                     <div class="col-sm-12 mt-5">
                          <ul>
                               <li>Ici on veut sélectionner seulement les services qui ont plus de deux employés : <code>SELECT service, COUNT(*) FROM `employes` GROUP BY service HAVING COUNT(*) > 2;</code></li>
+                         </ul>
+                    </div>
+               </div> <!-- fin row -->  
+               <div class="row border border-dark p-2">
+                    <div class="col-sm-12">
+                         <hr>
+                         <h2 class="text-center">12 - Requête de modification</h2>
+                         <hr>
+                    </div>
+                    <div class="col-sm-12 col-md-6 mt-5">
+                         <h6 class="text-center">Mise à jour avec UPDATE</h6>
+                         <ul>
+                              <li>Augmenter le salaire d'un employé : <code>UPDATE `employes` SET `salaire`= 1850 WHERE id_employes = 990;</code></li>
+                              <li class="alert alert-danger">On utilise toujours des ID pour mettre à jour les informations de la base de données car c'est le seul élément unique</li>
+                              <li>Pour faire plusieurs mise à jour en même temps il faut séparer les données par une virgule : <code>UPDATE `employes` SET `salaire`= 1875, service = 'commercial' WHERE id_employes = 990;</code></li>
                          </ul>
                     </div>
                </div> <!-- fin row -->  
