@@ -1,0 +1,139 @@
+<head>
+  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans&display=swap" rel="stylesheet"> 
+    <!-- feuille de style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Cours SQL</title>
+</head>
+
+<body>
+   <header>
+       <nav class="navbar navbar-expand-sm navbar-light bg-light  border-bottom border-dark">
+           <div class="container-fluid">
+               <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt="logo"></a>
+               <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                       aria-expanded="false" aria-label="Toggle navigation">
+                       <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="collapsibleNavId">
+                       <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                           <li class="nav-item">
+                               <a class="nav-link" href="index.html" >Acronyme</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link" href="cours.html">cours</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link" href="clause_sql.html">Les clauses SQL</a>
+                           </li>
+                           <li class="nav-item">
+                               <a class="nav-link" href="pratique_sql.html">Pratique SQL</a>
+                           </li>
+                       </ul>
+               </div>
+       </div>
+       </nav>
+   
+   </header>
+   <div class="container"> 
+       <!-- Début de main -->
+       <main>    
+           <div class="rowborder p-2">
+               <div class="col-sm-12">
+                   <hr>
+                   <h2 class="text-center" id="insert">Exercices</h2>
+                   <hr>
+               </div>
+               <div class="col-sm-12 mt-5">
+                   <ul>
+                       
+                       <li>Afficher le nom , le prénom et le service des employés qui ont une lettre t à la fin du prénom et travailent dans le service  commercial et comptabilité : <br>
+                           <code> ->SELECT nom, prenom, service FROM `employes` WHERE prenom LIKE '%t' AND service IN ('commercial' ,'comptabilité');</code>
+                       </li>
+                       <li>
+                           le nom , le prénom et la date d'embauche des employés qui ont été embaucher après 2007 et ont le sexe = 'f ' : <br>
+                           <code> -> SELECT  `prenom`, `nom`, `sexe`, `date_embauche` FROM `employes` WHERE date_embauche BETWEEN '2007-01-01' AND CURDATE() AND sexe='f';                            
+                           </code> <br>
+                           ou <br>
+                           <code> -> SELECT  `prenom`, `nom`, `sexe`, `date_embauche` FROM `employes` WHERE date_embauche >= '2007-01-01' AND sexe='f';</code>
+                       </li>
+                       <li>
+                           Afficher les différents salaire touchées dans la base entreprise :  <br>
+                           <code> -> SELECT DISTINCT salaire FROM employes;</code>
+                       </li>
+                       <li>
+                           Afficher les noms des employés qui ont un salaire entre 1400 et 4000 :  <br>
+                           <code> -> SELECT nom, salaire FROM employes WHERE salaire BETWEEN 1400 and 4000;</code>
+                       </li>
+                       <li>
+                           Afficher le nombre d'employés par salaire : <br>
+                       </li>
+                       <li>Afficher la profession de l'employé 547 :
+                       </li>
+                       <li>Afficher la date d'embauche d'Amandine :
+                       </li>
+                       <li>Afficher le nombre de commerciaux :
+                       </li>
+                       <li>Afficher le coût des commerciaux sur une année :
+                       </li>
+                       <li>Afficher le salaire moyen par service :
+                       </li>
+                       <li>Afficher le nombre de recrutement sur l'année 2010 :
+                       </li>
+                       <li>Augmenter le salaire pour chaque employé de 100€ :
+                       </li>
+                       <li>Afficher le nombre de service :
+                       </li>
+                       <li>
+                           Afficher 10 employés à partir de l'enregistrement 10 : 
+                           
+                       </li>
+                       <li>
+                           Afficher les salaires qui sont touchées par plus qu'un employé :
+                       </li>
+                       <!-- <li>Afficher les informations de l'employé du service commercial gagnant le salaire le plus élevé :
+                       </li>
+                       <li>Afficher l'employé ayant été embauché en dernier :
+                       </li> -->
+
+                   </ul>
+               </div>
+           </div>      
+       </main>  
+   </div> <!-- fin du container fluid -->
+
+<!-- Récupérer le nom , le prénom et le service des employé qui ont une lettre t à la fin du prénom et stravailent dans le service  commercial et comptabilité -->
+<!-- SELECT nom, prenom, service FROM `employes` WHERE prenom LIKE '%t' AND service IN ('comptabilite', 'commercial');  -->
+
+<!-- Récupérer le nom , le prénom et la date d'embauche des employés qui ont été embaucher après 2007 et ont le sexe = 'f '  -->
+<!-- SELECT nom, prenom, sexe, date_embauche FROM `employes` WHERE sexe = 'f' AND date_embauche BETWEEN '2007-01-01' AND '2023/01/01';  -->
+<!-- ou -->
+<!-- SELECT nom, prenom, sexe, date_embauche FROM `employes` WHERE sexe = 'f' AND date_embauche BETWEEN '2007-01-01' AND CURDATE();  -->
+<!-- ou -->
+<!-- SELECT nom, prenom, sexe, date_embauche FROM `employes` WHERE sexe = 'f' AND date_embauche >= '2007-01-01';  -->
+
+<!-- Récuperer les différents salaire touchées dans la base entreprise  -->
+<!-- SELECT DISTINCT salaire FROM `employes`;  -->
+
+<!-- Récuperer les noms des employés qui ont un salaire entre 1400 et 4000 -->
+<!-- SELECT nom, salaire FROM `employes` WHERE salaire BETWEEN 1400 AND 4000;  -->
+
+
+<!-- SELECT salaire, COUNT(*) AS salaires_employes FROM `employes` GROUP BY salaire; -->
+
+   <!-- Bootstrap JavaScript Libraries -->
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+   integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+   </script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+   integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+   </script>
+</body>
