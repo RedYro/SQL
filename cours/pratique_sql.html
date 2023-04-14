@@ -42,18 +42,19 @@
        </div>
        </nav>
    
-   </header>
-   <div class="container"> 
-       <!-- Début de main -->
-       <main>    
-           <div class="rowborder p-2">
-               <div class="col-sm-12">
+    </header>
+    <div class="container"> 
+        <!-- Début de main -->
+        <main>    
+            <div class="row border p-2">
+                <div class="col-sm-12">
                    <hr>
                    <h2 class="text-center" id="insert">Exercices</h2>
                    <hr>
-               </div>
-               <div class="col-sm-12 mt-5">
-                   <ul>                       
+                </div>
+                <div class="col-sm-12 py-5 mt-5 border border-dark">
+                    <h3 class="text-center">BDD employes</h3>
+                    <ul>                       
                        <li>Afficher le nom , le prénom et le service des employés qui ont une lettre t à la fin du prénom et travailent dans le service  commercial et comptabilité : <br>
                             <code> -> SELECT nom, prenom, service FROM `employes` WHERE prenom LIKE '%t' AND service IN ('commercial' ,'comptabilité');</code>
                        </li>
@@ -116,11 +117,61 @@
                        <li>Afficher l'employé ayant été embauché en dernier : <br>
                         <code> -> SELECT prenom, nom, date_embauche FROM `employes` ORDER BY date_embauche DESC LIMIT 0,1;</code>
                        </li>
-                   </ul>
-               </div>
-           </div>      
-       </main>  
-   </div> <!-- fin du container fluid -->
+                    </ul>
+                </div>
+                <div class="col-sm-12 py-5 mt-5 border border-dark">
+                    <h3 class="text-center">BDD haribo</h3>
+                    <ul>
+                        <li>Lister toutes les BDD de PHPMyAdmin : <br> <code>-> SHOW DATABASES;</code></li>
+                        <li>Créer une base de données SQL nommée HARIBO : <br> <code>-> CREATE DATABASE HARIBO;</code></li>
+                        <li>Créer les tables stagiaire, bonbon et mange_bonbon : <br> <code>-> CREATE TABLE stagiaire(id_users int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20), color VARCHAR(20), sexe ENUM('f', 'm'));</code> <br> <code>-> CREATE TABLE bonbons(id_bonbon int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20), goût VARCHAR(20));</code> <br> <code>-> CREATE TABLE mange_bonbon(id_manger int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, id_bonbon int(11) NULL, id_stagiaire int(11) NULL, date_manger DATE NULL, quantite INT(11));</code></li>
+                        <li>Insérer dans ces tables les informations suivantes: <br> -- -> table stagiaire
+                            -- ('jhordan', 'marron','m'),('MohamedA', 'marron','m'),('Anas', 'marron','m'),
+                            -- ('MohamedB', 'marron','m'),('Mehdi', 'marron','m'),('Mathieu', 'marron','m'),
+                            -- ('Hakim', 'marron','m'),('Sonia', 'marron','f'),('Julie', 'marron','f'),
+                            -- ('Assa', 'marron','f'), ('Magalie', 'marron','f'),('Yvette', 'marron','f') <br> -- -> table bonbon 
+                            -- ('dragibus', 'cola'), ('tagada', 'fraise'), ('bams', 'banane'),('rotella', 'reglisse'),('floppys', 'sucre'),('rainbollows', 'marshmallow'),('bigharri', 'cerise'), ('oursor', 'fruits'),('croco', 'fruits'),('oeufoplat', 'guimauve'),
+                            -- ('flanbotti', 'caramel') <br> -- -> table mange bonbon 
+                            -- (4,7,'2018-12-20', 5),(1,1,'2018-12-05', 5),(2,2,'2018-12-03', 5),(3,3,'2018-12-04', 5),(5,4,'2018-12-15', 5),(6,5,'2018-12-18', 5),(7,6,'2018-12-22', 5),(8,8,'2018-12-25', 5),(9,9,'2018-12-24', 5),(10,10,'2018-12-01', 5),(11,11,'2018-12-06', 5) : <br> <code>-> INSERT INTO stagiaire (name, color, sexe) VALUES ('Jhordan', 'marron', 'm'),('MohamedA', 'marron', 'm'),('Anas','marron','m'),('MohamedB','marron','m'),('Mehdi','marron','m'),('Mathieu','marron','m'),('Hakim','marron','m'),('Sonia','marron','f'),('Julie','marron','f'),('Assa','marron','f'),('Magalie','marron','f'),('Yvette','marron','f');</code> <br> <code>-> INSERT INTO bonbons (name, goût) VALUES ('dragibus', 'cola'),('tagada', 'fraise'),('bams','banane'),('rotella','reglisse'),('floppys','sucre'),('rainbollows','marshmallow'),('Hakim','cerise'),('oursor','fruits'),('croco','fruits'),('oeufoplat','guimauve');</code> <br> <code>-> INSERT INTO mange_bonbon (id_bonbon, id_stagiaire, date_manger, quantite) VALUES (4, 7, '2018-12-20', 5),(1, 1, '2018-12-05', 5),(2, 2,'2018-12-03', 5),(5, 4, '2018-12-18', 5),(6, 5,'2018-12-18', 5),(7, 6, '2018-12-22', 5),(8, 8, '2018-12-25', 5),(9, 9,'2018-12-24', 5),(10, 10 ,'2018-12-01', 5),(11, 11, '2018-12-06', 5);</code></li>
+                        <li>Lister les tables de la BDD *haribo* : <br> <code>-> SHOW TABLES;</code></li>
+                        <li>Voir les paramètres de la table *bonbon* : <br> <code>-> SELECT * FROM bonbons;</code></li>
+                        <li>Sélectionner tous les champs de tous les enregistrements de la table *stagiaire*: <br> <code>-> SELECT * FROM stagiaire;</code></li>
+                        <li>Rajouter un nouveau stagiaire *Patriiiick* en forçant la numérotation de l'id : <br> <code>-> INSERT INTO stagiaire (id_users , name, color, sexe) VALUES (100, 'Patriiiick', 'marron', 'm');</code></li>
+                        <li>Rajouter un nouveau stagiaire *Mila* SANS forcer la numérotation de l'id : <br> <code>-> INSERT INTO stagiaire (name, color, sexe) VALUES ('Mila', 'marron', 'f');</code></li>
+                        <li>Changer le prénom du stagiaire qui a l'id 100 de *Patriiiick* à *Patrick* : <br> <code>-> UPDATE stagiaire SET name = 'Patrick' WHERE name = 'Patriiiick';</code></li>
+                        <li>Rajouter dans la table manger que Patrick a mangé 5 Tagada purple le 15 septembre: <br> <code>-> INSERT INTO mange_bonbon (id_bonbon, id_stagiaire, date_manger, quantite) VALUES (2, 100, '2018-09-15', 5); </code></li>
+                        <li>Sélectionner tous les noms des bonbons <br> <code>-> SELECT name FROM bonbons;</code></li>
+                        <li>Sélectionner tous les noms des bonbons en enlevant les doublons : <br> <code>-> SELECT name FROM bonbons GROUP BY name;</code></li>
+                        <li>Récupérer les couleurs des yeux des stagiaires (Sélectionner plusieurs champs dans une table) : <br> <code>-> SELECT color , name FROM stagiaire;</code></li>
+                        <li>Dédoublonner un résultat sur plusieurs champs : <br> <code>-> SELECT DISTINCT(color) FROM stagiaire;</code></li>
+                        <li>Sélectionner le stagiaire qui a l'id 5 : <br> <code>-> SELECT name FROM stagiaire WHERE id_users = 5;</code></li>
+                        <li>Sélectionner tous les stagiaires qui ont les yeux marrons : <br> <code>-> SELECT name, color FROM stagiaire WHERE color = 'marron';</code></li>
+                        <li>Sélectionner tous les stagiaires dont l'id est plus grand que 9 : <br> <code>-> SELECT name, id_users FROM stagiaire WHERE id_users > 9;</code></li>
+                        <li>Sélectionner tous les stagiaires SAUF celui dont l'id est 13 (soyons supersticieux !) :!\ il y a 2 façons de faire : <br> <code>-> SELECT name, id_users FROM stagiaire WHERE id_users != 13;</code></li>
+                        <li>Sélectionner tous les stagiaires qui ont un id inférieur ou égal à 10 : <br> <code>-> SELECT name, id_users FROM stagiaire WHERE id_users <= 10;</code></li>
+                        <li>Sélectionner tous les stagiaires dont l'id est compris entre 7 et 11 : <br> <code>-> SELECT name, id_users FROM stagiaire WHERE id_users BETWEEN 7 AND 11;</code></li>
+                        <li>Sélectionner les stagiaires dont le prénom commence par un *S* : <br> <code>-> SELECT name FROM stagiaire WHERE name LIKE 's%';</code></li>
+                        <li> Trier les stagiaires femmes par id décroissant : <br> <code>-> SELECT name, id_users FROM stagiaire WHERE sexe = 'f' ORDER BY id_users DESC</code></li>
+                        <li>Trier les stagiaires hommes par prénom dans l'ordre alphabétique : <br> <code>-> SELECT name FROM stagiaire WHERE sexe = 'm' ORDER BY name ASC;</code></li>
+                        <li>Trier les stagiaires en affichant les femmes en premier et en classant les couleurs des yeux dans l'ordre alphabétique : <br> <code>-> SELECT * FROM stagiaire  ORDER BY sexe ASC, color ASC;</code></li>
+                        <li>Limiter l'affichage d'une requête de sélection de tous les stagiaires aux 3 premires résultats : <br> <code>-> SELECT * FROM stagiaire LIMIT 0,3;</code></li>
+                        <li>Limiter l'affichage d'une requête de sélection de tous les stagiaires à partir du 3ème résultat et des 5 suivants<code>-> SELECT * FROM stagiaire LIMIT 2,6;</code></li>
+                        <li>Afficher les 4 premiers stagiaires qui ont les yeux marron : <br> <code>-> SELECT name, color, id_users FROM stagiaire WHERE color = 'marron' LIMIT 0,4;</code></li>
+                        <li>Pareil mais en triant les prénoms dans l'ordre alphabétique : <br> <code>-> SELECT name, color, id_users FROM stagiaire WHERE color = 'marron' AND id_users BETWEEN 0 AND 4  ORDER BY name ASC LIMIT 0,4;</code></li>
+                        <li>Compter le nombre de stagiaires : <br> <code>-> SELECT COUNT(*) AS nombre_stagiaires FROM stagiaire;</code></li>
+                        <li>Compter le nombre de stagiaires hommes mais en changeant le nom de la colonne de résultat par *nb_stagiaires_H* : <br> <code>-> SELECT COUNT(*) AS nb_stagiaires_H FROM stagiaire WHERE sexe = 'm';</code></li>
+                        <li>Compter le nombre de couleurs d'yeux différentes : <br> <code>-> SELECT COUNT(DISTINCT(color)) AS eyes_different_color FROM stagiaire;</code></li>
+                        <li>Afficher le prénom et les yeux du stagiaire qui a l'id le plus petit : <br> <code>-> SELECT MIN(id_users), name, color FROM stagiaire;</code></li>
+                        <li>Afficher le prénom et les yeux du stagiaire qui a l'id le plus grand /!\ c'est une requête imbriquée qu'il faut faire (requête sur le résultat d'une autre requête) <br> <code>-> SELECT name, color, id_users FROM stagiaire WHERE id_users = (SELECT MAX(id_users) FROM stagiaire);</code></li>
+                        <li>Afficher les stagiaires qui ont les yeux bleu et vert : <br> <code>-> SELECT color, name FROM stagiaire WHERE color != 'marron';</code></li>
+                        <li>A l'inverse maintenant, afficher les stagiaires qui n'ont pas les yeux bleu ni vert : <br> <code>-> SELECT color, name FROM stagiaire WHERE color = 'marron';</code></li>
+                        <li>Afficher combien de bonbons ont été consommés au total : <br> <code>-> SELECT SUM(quantite) AS bonbon_manger FROM mange_bonbon;</code></li>
+                        <li>Afficher les saveurs des bonbons (sans doublons) : <br> <code>-> SELECT goût FROM bonbons GROUP BY goût;</code></li>
+                    </ul>
+                </div>
+            </div>      
+        </main>  
+    </div> <!-- fin du container fluid -->
 
 <!-- Récupérer le nom , le prénom et le service des employé qui ont une lettre t à la fin du prénom et stravailent dans le service  commercial et comptabilité -->
 <!-- SELECT nom, prenom, service FROM `employes` WHERE prenom LIKE '%t' AND service IN ('comptabilite', 'commercial');  -->
