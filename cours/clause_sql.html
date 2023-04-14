@@ -378,6 +378,118 @@
                          </ul>
                     </div>
                </div> <!-- fin row -->  
+               <div class="row border border-dark p-2">
+                    <div class="col-sm-12">
+                         <hr>
+                         <h2 class="text-center">13 - Requête de imbriquées</h2>
+                         <hr>
+                    </div>
+                    <div class="col-sm-12 col-md-12 mt-5">
+                         <ul>
+                             <li>Consiste à exécuter une requête à l’intérieur d’une autre requête, encapsulée dans une autre requête, il n'y a pas de limite dans le nombre de niveuax d'imbrication.</li>
+                             <li>Le résultat de chaque requête imbriquée sert de valeur de référence dans la condition de sélection de la requête de niveau supérieur, appelée requête principale</li>
+                             <li>Afin d'avoir un cas concret et un contexte favorable à ce type de requête, nous allons modéliser la base de données d'une bibliothèque</li>
+                         </ul>
+                         <h4 class="text-center" id="insertInto">1 - Une BDD bibliotheque</h4>
+                         <p>Les sujets d'une BDD bibliothèque :</p>
+                         <ul>
+                             <li>Une table des <strong>livres</strong></li>
+                             <li>Une table des <strong>abonnés</strong></li>
+                             <li>Une table <strong>emprunt</strong> qui permet de savoir quel livre à été emprunté par quel abonné et à quelle date</li>
+                         </ul>
+                         <p class="alert alert-danger">Ici, on commence à modéliser notre base de données en réfléchissant à ce qui va aller dedans. </p>       
+                    </div>
+                    <div class=" col-sm-12 row">
+                         <div class="col-sm-12 col-md-4 ">
+                             <img src="assets/img/abonne.png" alt="Image représentant la table abonne" class="img-fluid">
+                         </div>
+                         <div class="col-sm-12 col-md-4 ">
+                             <img src="assets/img/livre.png" alt="Image représentant la table livre" class="img-fluid">
+                         </div>                   
+                         <div class="col-sm-12 col-md-4 ">
+                              <img src="assets/img/emprunt.png" alt="Image représentant la table emprunt" class="img-fluid">
+                         </div>                
+                    </div>
+                    <div class="col-sm-12">
+                         <ul>
+                              <li>
+                                   <h6>Création de la BDD :</h6>
+                                   <code>-> CREATE DATABASE bibliotheque;</code>
+                              </li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                         <ul>
+                              <li>
+                                   <h6>Création de la TABLE 1 (abonnes) :</h6>
+                                   <code>-> CREATE TABLE IF NOT EXISTS abonnes (id_abonne INT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT, prenom VARCHAR(20) NOT NULL);</code>
+                              </li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                         <ul>
+                              <li>
+                                   <h6>Création de la TABLE 2 (emprunt) :</h6>
+                                   <code>-> CREATE TABLE IF NOT EXISTS emprunt (id_emprunt INT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT, id_livre INT(3) DEFAULT NULL, id_abonne INT(3) DEFAULT NULL, date_sortie DATE NOT NULL, date_rendu DATE DEFAULT NULL);</code> 
+                              </li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                         <ul>
+                              <li>
+                                   <h6>Création de la TABLE 3 (livre) :</h6>
+                                   <code>-> CREATE TABLE IF NOT EXISTS livre (id_livre INT(3) NOT NULL PRIMARY KEY  AUTO_INCREMENT, auteur VARCHAR(30) NOT NULL, titre VARCHAR(30) NOT NULL);</code>
+                              </li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12 col-md-12 ">
+                         <ul>
+                             <li>
+                                 <h6>Création des clés étrangères : </h6>
+                                 <ul>
+                                     <li> Dans la table emprunt, id_livre sera un champ clé étrangère en référence au champ id_livre de la table livre. <br>
+                                         <code>-> ALTER TABLE emprunt ADD FOREIGN KEY (id_livre) REFERENCES bibliotheque.livre(id_livre);</code>
+                                     </li>
+                                     <li>Le champ id_abonne de la table emprunt sera une clé étrangère au champ id_abonne de la table abonne.  <br>
+                                         <code>-> ALTER TABLE emprunt ADD FOREIGN KEY (id_abonne) REFERENCES bibliotheque.abonne (id_abonne); </code>
+                                     </li>
+                                 </ul>
+                             </li>
+                         </ul>
+                     </div>
+                     <div class="col-sm-12 col-md-12 mt-5">
+                    
+                         <h6 class="text-center">Insérer des données dans les tables :</h6>
+                         
+                     </div>
+                     <div class="col-sm-12 col-md-4">
+                         <ul>
+                             <li >
+                                 <code>-> INSERT INTO abonne (id_abonne, prenom) VALUES (NULL, 'Guillaume'), (NULL, 'Benoit'), (NULL, 'Chloe'), (NULL, 'Laura');</code>
+                             </li>
+                         </ul>
+                     </div>
+                     <div class="col-sm-12 col-md-4">
+                         <ul>
+                             <li>
+                                 <code>-> INSERT INTO livre (id_livre, auteur, titre) VALUES (100, 'GUY DE MAUPASSANT', 'Une vie'), (101, 'GUY DE MAUPASSANT', 'Bel-Ami '), (102, 'HONORE DE BALZAC', 'Le père Goriot'), (103, 'ALPHONSE DAUDET', 'Le Petit chose'), (104, 'ALEXANDRE DUMAS', 'La Reine Margot'),(105, 'ALEXANDRE DUMAS', 'Les Trois Mousquetaires');</code>
+                             </li>
+                         </ul>
+                     </div>
+                     <div class="col-sm-12 col-md-4">
+                         <ul>
+                             <li >
+                                 <code>-> INSERT INTO emprunt (id_emprunt, id_livre, id_abonne, date_sortie, date_rendu) VALUES (NULL, 100, 1, '2014-12-17', '2014-12-18'), (NULL, 101, 2, '2014-12-18', '2014-12-20'), (NULL, 100, 3, '2014-12-19', '2014-12-22'), (NULL, 103, 4, '2014-12-19', '2014-12-22'), (NULL, 104, 1, '2014-12-19', '2014-12-28'), (NULL, 105, 2, '2015-03-20', '2015-03-26'), (NULL, 105, 3, '2015-06-13', NULL), (NULL, 100, 2, '2015-06-15', NULL);</code>
+                             </li>
+                         </ul>
+                     </div>
+                     <div class="col-sm-12 mt-5">
+                         <h6>Exemples de requêtes</h6>
+                         <li>Recherche des livres non rendus : <br> <code>-> SELECT * FROM emprunt WHERE date_rendu = NULL;</code></li>
+                         <li class="alert alert-danger">Pour trouver quelque chose qui est NULL on utilisera le terme IS ! : <code>SELECT id_livre FROM emprunt WHERE date_rendu = NULL;</code> ne retourne aucun résultat.</li>
+                         <li>On cherche les titres des livres qui n'ont pas été rendu : <code>-> SELECT titre, id_livre FROM livre WHERE id_livre = (SELECT ad cleaveur)</code>On cherche les titres des libres qui 'nont pas été= été rendu =</li>
+                     </div>
+               </div> <!-- fin row -->  
           </main> 
      </div> 
      <!-- fin du container fluid -->
