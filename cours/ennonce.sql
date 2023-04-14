@@ -98,21 +98,14 @@
 -- +------------------+
 
 --6-- voir les paramètres de la table *bonbon*
--- SELECT * FROM bonbons;
--- +-----------+-------------+-------------+
--- | id_bonbon | name        | goût        |
--- +-----------+-------------+-------------+
--- |         1 | dragibus    | cola        |
--- |         2 | tagada      | fraise      |
--- |         3 | bams        | banane      |
--- |         4 | rotella     | reglisse    |
--- |         5 | floppys     | sucre       |
--- |         6 | rainbollows | marshmallow |
--- |         7 | Hakim       | cerise      |
--- |         8 | oursor      | fruits      |
--- |         9 | croco       | fruits      |
--- |        10 | oeufoplat   | guimauve    |
--- +-----------+-------------+-------------+
+-- DESC bonbons;
+-- +-----------+-------------+------+-----+---------+----------------+
+-- | Field     | Type        | Null | Key | Default | Extra          |
+-- +-----------+-------------+------+-----+---------+----------------+
+-- | id_bonbon | int(11)     | NO   | PRI | NULL    | auto_increment |
+-- | name      | varchar(20) | YES  |     | NULL    |                |
+-- | goût      | varchar(20) | YES  |     | NULL    |                |
+-- +-----------+-------------+------+-----+---------+----------------+
 
 --7-- Sélectionner tous les champs de tous les enregistrements de la table *stagiaire*
 -- SELECT * FROM stagiaire; 
