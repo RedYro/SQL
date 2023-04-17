@@ -112,10 +112,13 @@
                            <code> -> SELECT salaire, COUNT(*) FROM `employes` GROUP BY salaire HAVING COUNT(*) > 1;</code>
                        </li>
                        <li>Afficher les informations de l'employé du service commercial gagnant le salaire le plus élevé : <br>
-                        <code> -> SELECT prenom, nom, MAX(salaire) FROM `employes` WHERE service = 'commercial';</code>
+                        <code> -> SELECT * FROM `employes` WHERE service = 'commercial' AND salaire IN (SELECT MAX(salaire) FROM employes WHERE service = 'commercial');</code> <br>
+                        <code> -> SELECT * FROM `employes` WHERE salaire IN (SELECT MAX(salaire) FROM employes WHERE service = 'commercial');</code>
+
                        </li>
                        <li>Afficher l'employé ayant été embauché en dernier : <br>
-                        <code> -> SELECT prenom, nom, date_embauche FROM `employes` ORDER BY date_embauche DESC LIMIT 0,1;</code>
+                        <code> -> SELECT * FROM `employes` ORDER BY date_embauche DESC LIMIT 0,1;</code> <br>
+                        <code> -> SELECT * FROM employes WHERE date_embauche IN (SELECT MAX(date_embauche) FROM employes);</code>
                        </li>
                     </ul>
                 </div>

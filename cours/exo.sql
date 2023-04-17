@@ -1,0 +1,10 @@
+-- On cherche maintenant les id des livres que Chloe a emprunté : 
+-- On cherche maintenant le prénom des abonnés ayant emprunté un livre le 2014-12-19 :
+-- Afficher la liste des abonnées ayant emprunté un livre de Daudet :
+-- Afficher les titres de livre que Benoit a emprunté à la bibliothèque :
+-- Afficher les titres des livres que Chloe n'a pas emprunté : 
+-- Afficher les titres des livres que Chloé n'a pas encore rendu à la bibliothèque :
+-- Combien de livres Guillaume a emprunté à la bibliothèque ? : 
+-- Quel est le livre qui n'a été emprunté par personne ? : 
+-- Combien de personnes ont emprunté le livre Une vie ?:
+-- Quel livre a été emprunté le dernier ? : 

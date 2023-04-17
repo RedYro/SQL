@@ -486,10 +486,45 @@
                      <div class="col-sm-12 mt-5">
                          <h6>Exemples de requêtes</h6>
                          <li>Recherche des livres non rendus : <br> <code>-> SELECT * FROM emprunt WHERE date_rendu = NULL;</code></li>
-                         <li class="alert alert-danger">Pour trouver quelque chose qui est NULL on utilisera le terme IS ! : <code>SELECT id_livre FROM emprunt WHERE date_rendu = NULL;</code> ne retourne aucun résultat.</li>
-                         <li>On cherche les titres des livres qui n'ont pas été rendu : <code>-> SELECT titre, id_livre FROM livre WHERE id_livre = (SELECT ad cleaveur)</code>On cherche les titres des libres qui 'nont pas été= été rendu =</li>
+                         <li class="alert alert-danger">Pour trouver quelque chose qui est NULL on utilisera le terme IS : <code>SELECT id_livre FROM emprunt WHERE date_rendu = NULL;</code> ne retourne aucun résultat.</li>
+                         <li>Recherche de titres de livres non rendus : <br> <code>-> SELECT titre, id_livre FROM livre WHERE id_livre = (SELECT id_livre FROM emprunt WHERE date_rendu IS NULL);</code></li>
+                         <li>On cherche maintenant les id des livres que Chloe a emprunté : <br> <code>-> SELECT id_livre, id_abonne FROM emprunt WHERE id_abonne = (SELECT id_abonne FROM abonnes WHERE prenom = 'Chloe');</code></li>
+                         <li>On cherche maintenant le prénom des abonnés ayant emprunté un livre le 2014-12-19 : <br> <code>-> SELECT prenom FROM abonnes WHERE id_abonne IN (SELECT id_abonne FROM emprunt WHERE date_sortie = '2014-12-19');</code></li>
+                         <li>Afficher la liste des abonnés ayant emprunté un livre de Daudet : <br> <code>-> SELECT prenom, id_abonne FROM abonnes WHERE id_abonne IN (SELECT id_abonne FROM emprunt WHERE id_livre IN (SELECT id_livre FROM livre WHERE auteur LIKE '%daudet%'));</code></li>
+                         <li>Afficher les titres de livre que Benoit a emprunté à la bibliothèque : <br> <code>-> SELECT titre, id_livre FROM livre WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE id_abonne IN(SELECT id_abonne FROM abonnes WHERE prenom ='Benoit'));</code></li>
+                         <li>Afficher les titres des livres que Chloe n'a pas emprunté : <br> <code>-> SELECT titre, id_livre FROM livre WHERE id_livre NOT IN (SELECT id_livre FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom = 'Chloe'));</code></li>
+                         <li>Afficher les titres des livres que Chloé n'a pas encore rendu à la bibliothèque : <br> <code>-> SELECT titre, id_livre FROM livre WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE date_rendu IS NULL AND id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom ='Chloe'));</code></li>
+                         <li>Combien de livres Guillaume a emprunté à la bibliothèque ? :  <br> <code>-> SELECT COUNT(id_livre) FROM livre WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom ='Guillaume'));</code> <br> <code>-> SELECT COUNT(*) AS nb_livre FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom ='Guillaume');</code></li>
+                         <li>Quel est le livre qui n'a été emprunté par personne ? : <br> <code>-> SELECT id_livre FROM livre WHERE id_livre NOT IN (SELECT id_livre FROM emprunt);</code></li>
+                         <li>Combien de personnes ont emprunté le livre Une vie ? : <br> <code>-> SELECT COUNT(*) FROM emprunt WHERE id_livre IN (SELECT id_livre FROM livre WHERE titre = 'Une vie'); </code></li>
+                         <li>Quel livre a été emprunté le dernier ? : <br> <code>-> SELECT id_livre, titre FROM livre WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE date_sortie IN (SELECT MAX(date_sortie) FROM emprunt));</code> <br> <code>-> SELECT titre FROM livre WHERE id_livre IN (SELECT id_livre FROM emprunt ORDER BY date_sortie DESC) LIMIT 1;</code></li>
                      </div>
                </div> <!-- fin row -->  
+               <div class="row border border-dark p-2">
+                    <div class="col-sm-12">
+                         <hr>
+                         <h2 class="text-center">14 - Jointures</h2>
+                         <hr>
+                    </div>
+                    <div class="col-sm-12 col mt-5">
+                         <ul>
+                              <li>Les requêtes de jointures permettent, comme les requêtes imbriquées, l'extraction les données de plusieurs tables</li>
+                              <li>L'avantage des jointures est que l'on peut obtenir dans le résultat final des colonnes (des champs) issues de plusieurs tables différentes</li>
+                         </ul>
+                         <h6>Récapitulatif</h6>
+                         <ul>
+                              <li><code>-> SELECT</code> : SELECT va comporter la liste des champs que je souhaite afficher dans mon résultat</li>
+                              <li><code>-> FROM</code> : FROM comportera la précision de la table que l'on souhaite dans notre requête</li>
+                              <li><code>-> WHERE</code> : WHERE permettra de définir la condition de jointure pour assurer le croisement des données</li>
+                              <li><code>-> AND / OR</code> : Conditions nécessaires à notre résultat</li>
+                         </ul>
+                    </div>
+                    <div class="col-sm-12">
+                         <ul>
+                              <li>Dans la BDD bibliotheque, afficher les dates à laquelles Guillaume s'est rendu pour emprunter un livre ou le rendre, <br> <code>-> SELECT abonnes.prenom, emprunt.date_sortie, emprunt.date_rendu FROM abonnes, emprunt WHERE abonnes.prenom ='Guillaume' AND abonnes.id_abonne = emprunt.id_abonne;</code></li>
+                         </ul>
+                    </div>
+               </div> <!-- fin row -->
           </main> 
      </div> 
      <!-- fin du container fluid -->
