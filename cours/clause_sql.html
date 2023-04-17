@@ -522,6 +522,8 @@
                     <div class="col-sm-12">
                          <ul>
                               <li>Dans la BDD bibliotheque, afficher les dates à laquelles Guillaume s'est rendu pour emprunter un livre ou le rendre, <br> <code>-> SELECT abonnes.prenom, emprunt.date_sortie, emprunt.date_rendu FROM abonnes, emprunt WHERE abonnes.prenom ='Guillaume' AND abonnes.id_abonne = emprunt.id_abonne;</code></li>
+                              <li>La même chose avec des préfixes : <br> <code>-> SELECT a.prenom, e.date_sortie, e.date_rendu FROM abonnes a, emprunt e WHERE a.prenom ='Guillaume' AND a.id_abonne = e.id_abonne; </code></li>
+                              <li>Qui a emprunté le livre 'Une vie' en 2014 ? : <br> <code>-> SELECT a.prenom, e.date_sortie, l.titre FROM abonnes a, emprunt e, livre l WHERE e.date_sortie BETWEEN '2014-01-01' AND '2015-01-01' AND l.titre = 'Une vie' AND e.id_abonne = a.id_abonne AND e.id-livre = l.id_livre;</code></li>
                          </ul>
                     </div>
                </div> <!-- fin row -->
