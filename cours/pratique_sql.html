@@ -170,6 +170,20 @@
                         <li>A l'inverse maintenant, afficher les stagiaires qui n'ont pas les yeux bleu ni vert : <br> <code>-> SELECT color, name FROM stagiaire WHERE color = 'marron';</code> <br> <code>-> SELECT * FROM stagiaire WHERE color != 'bleu' AND color !='vert';</code> <br> <code>-> SELECT name, color FROM stagiaire WHERE color NOT IN ('vert', 'bleu'); </code></li>
                         <li>Afficher combien de bonbons ont été consommés au total : <br> <code>-> SELECT SUM(quantite) AS bonbon_manger FROM mange_bonbon;</code></li>
                         <li>Afficher les saveurs des bonbons (sans doublons) : <br> <code>-> SELECT goût FROM bonbons GROUP BY goût;</code> <br> <code>-> SELECT DISTINCT goût FROM bonbons;</code></li>
+                        <li>Afficher tous les stagiaires qui ont mangé des bonbons : <br> <code>-> SELECT s.name, b.name FROM stagiaire s, bonbons b, mange_bonbon m_b WHERE s.id_users = m_b.id_stagiaire AND b.id_bonbon = m_b.id_bonbon;</code> <br> <code>-> SELECT name FROM stagiaire WHERE id_users IN (SELECT id_stagiaire FROM mange_bonbon);</code></li>
+                        <li>Récupérer les informations sur les stagiaires qui ont mangé plus d'un bonbon : <br> <code>-> SELECT s.name, s.id_users, m_b.quantite FROM stagiaire s, bonbons b, mange_bonbon m_b WHERE s.id_users = m_b.id_stagiaire AND b.id_bonbon = m_b.id_bonbon AND m_b.quantite > 1;</code> <br> <code>-> SELECT name FROM stagiaire WHERE id_users IN (SELECT id_stagiaire FROM mange_bonbon WHERE quantite > 1);</code></li>
+                        <li>Afficher le prénom, le nom des bonbons et la date de consommation pour tous les stagiaires qui en ont mangé au moins une fois : <br> <code>-> SELECT s.name, s.id_users, m_b.quantite, m_b.date_manger FROM stagiaire s, bonbons b, mange_bonbon m_b WHERE s.id_users = m_b.id_stagiaire AND b.id_bonbon = m_b.id_bonbon AND m_b.quantite >= 1;</code></li>
+                        <li>Afficher le nombre de Tagada consommés : <br> <code>-> SELECT b.name, COUNT(m_b.quantite) FROM bonbons b, mange_bonbon m_b WHERE b.id_bonbon = m_b.id_bonbon AND b.name LIKE 'tagada%';</code></li>
+                        <li>Afficher le total de Tagada consommés : <br> <code>-> SELECT b.name, SUM(m_b.quantite) FROM bonbons b, mange_bonbon m_b WHERE b.id_bonbon = m_b.id_bonbon AND b.name LIKE 'tagada%';</code></li>
+                        <li>Afficher le prénom de la personne ayant consommé le plus de bonbon : <br> <code>-> SELECT s.name, m_b.quantite FROM stagiaire s, bonbons b, mange_bonbon m_b WHERE b.id_bonbon = m_b.id_bonbon AND s.id_users = m_b.id_stagiaire AND m_b.quantite IN (SELECT MAX(m_b.quantite) FROM mange_bonbon m_b);</code></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12 py-5 mt-5 border border-dark">
+                    <h3 class="text-center">BDD immobilier</h3>
+                    <ul>
+                        <li>Création de la BDD 'immobilier'<code>-> CREATE DATABASE immobilier;</code></li>
+                        <li>Création des tables agence, demande, logement, logement_agence, logement_personne, personne : <br> <code>-> CREATE TABLE agence(id_agence INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, nom VARCHAR(20), adresse VARCHAR(100));</code> <br> <code>-> CREATE TABLE demande(id_demande INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, id_personne INT(11), genre ?(), ville VARCHAR(100), budget FLOAT NULL, superficie_m² FLOAT NULL, catagorie ENUM('maison', 'appartement') NOT NULL)</code> <br> <code>-> CREATE TABLE logement</code> <br> <code>-> CREATE TABLE logement_agence</code> <br> <code>-> CREATE TABLE logement_personne</code> <br> <code>-> CREATE TABLE personne</code></li>
+                        <li><code>-> </code></li>
                     </ul>
                 </div>
             </div>      
