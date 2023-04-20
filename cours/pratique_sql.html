@@ -182,9 +182,159 @@
                     <h3 class="text-center">BDD immobilier</h3>
                     <ul>
                         <li>Création de la BDD 'immobilier' : <br> <code>-> CREATE DATABASE IF NOT EXISTS immobilier;</code></li>
-                        <li>Création des tables agence, demande, logement, logement_agence, logement_personne, personne : <br> <code>-> CREATE TABLE IF NOT EXISTS agence(id_agence INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, nom VARCHAR(100), adresse VARCHAR(100));</code> <br> <code>-> CREATE TABLE IF NOT EXISTS demande(id_demande INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, id_personne INT(11), genre VARCHAR(100) NOT NULL, ville VARCHAR(100) NOT NULL, budget FLOAT NOT NULL, superficie FLOAT NOT NULL, categorie VARCHAR(100) NOT NULL, key id_personne (id_personne));</code> <br> <code>-> CREATE TABLE IF NOT EXISTS logement(id_logement INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, genre VARCHAR(100) NOT NULL, ville VARCHAR(100), prix FLOAT NOT NULL, superficie FLOAT NOT NULL, categorie VARCHAR(100) NOT NULL);</code> <br> <code>-> CREATE TABLE IF NOT EXISTS logement_agence(id_logement_agence INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, id_agence INT(11), id_logement INT(11), frais FLOAT NULL, KEY id_agence (id_agence), KEY id_logement (id_logement));</code> <br> <code>-> CREATE TABLE IF NOT EXISTS logement_personne(id_logement_personne INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, id_personne INT(11), id_logement INT(11), frais FLOAT NULL, KEY id_personne (id_personne), KEY id_logement (id_logement));</code> <br> <code>-> CREATE TABLE IF NOT EXISTS personne(id_personne INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, prenom VARCHAR (100) NOT NULL);</code></li>
-                        <li>Création de clés étrangères (via des requêtes) : <br> <code>-> ALTER TABLE logement_agence ADD CONSTRAINT FOREIGN KEY (id_logement) REFERENCES logement (id_logment), ADD CONSTRAINT FOREIGN KEY (id_agence) REFERENCES agence (id_agence);</code> <br> <code>-> ALTER TABLE logement_personne ADD CONSTRAINT FOREIGN KEY (id_logement) REFERENCES logement (id_logment), ADD CONSTRAINT FOREIGN KEY (id_personne) REFERENCES personne (id_personne);</code> <br> <code>-> ALTER TABLE demande ADD CONSTRAINT FOREIGN KEY (id_personne) REFERENCES personne (id_personne);</code></li>
-                        <li>Insertion des données dans les tables : <br> "agence"<code> -> INSERT INTO `agence` (`id_agence`, `nom`, `adresse`) VALUES (257400, 'logic-immo', 'rue logic'), (383505, 'century21', 'rue century'), (504585, 'laforet', 'rue laforet'), (544688, 'fnaim', 'rue fnaim'), (608870, 'orpi', 'rue orpi'), (654178, 'foncia', 'rue foncia'), (654658, 'guy-hoquet', 'rue guy-hoquet'), (654893, 'seloger', 'rue seloger'), (692702, 'bouygues immobilier', 'rue bouygues');</code> <br> "personne" <code> -> INSERT INTO `personne` (`id_personne`, `prenom`) VALUES (1, 'william'), (2, 'gaetan'), (3, 'mehdi'), (4, 'charles'), (5, 'brigitte'), (6, 'sarah'), (7, 'lucas'), (8, 'quentin'), (9, 'patrick'), (10, 'emmanuel'), (11, 'elodie'), (12, 'agathe'), (13, 'valentine'), (14, 'charlotte'), (15, 'alice'), (16, 'samuel'), (17, 'mathieu'), (18, 'noemie'), (19, 'simon'), (20, 'florian'), (21, 'clement'), (22, 'yvon'), (23, 'lea'), (24, 'chloe'), (25, 'camille'), (26, 'alexandre'), (27, 'julie'), (28, 'leo'), (29, 'antoine'), (30, 'lola'), (31, 'celia'), (32, 'anna'), (33, 'caroline'), (34, 'adele'), (35, 'sabrina'), (36, 'nathalie'), (37, 'franck'), (38, 'tom'), (39, 'johan'), (40, 'priscillia'), (41, 'assia'), (42, 'nathan'), (43, 'aurore'), (44, 'marie'), (45, 'oceane'), (46, 'enzo'), (47, 'ines'), (48, 'hugo'), (49, 'jonathan'), (50, 'axelle'), (51, 'morgane'), (52, 'melissa'), (53, 'kevin'), (54, 'ophelie'), (55, 'victoria'), (56, 'alexis'), (57, 'robin');</code> <br> "demande"<code> -> INSERT INTO `demande` (`id_demande`, `id_personne`, `genre`, `ville`, `budget`, `superficie`, `categorie`) VALUES (1, 1, 'appartement', 'paris', 530000, 120, 'vente'), (2, 3, 'appartement', 'bordeaux', 120000, 18, 'vente'), (3, 4, 'appartement', 'bordeaux', 145000, 21, 'vente'), (4, 5, 'appartement', 'bordeaux', 152000, 26, 'vente'), (5, 6, 'appartement', 'lyon', 200000, 55, 'vente'), (6, 7, 'appartement', 'paris', 400000, 55, 'vente'), (7, 9, 'appartement', 'paris', 171000, 40, 'vente'), (8, 13, 'appartement', 'paris', 163000, 25, 'vente'), (9, 16, 'appartement', 'paris', 132000, 15, 'vente'), (10, 19, 'appartement', 'paris', 350000, 80, 'vente'), (11, 22, 'appartement', 'lyon', 600, 20, 'location'), (12, 25, 'appartement', 'lyon', 188000, 65, 'vente'), (13, 27, 'appartement', 'paris', 400, 15, 'location'), (14, 28, 'appartement', 'paris', 330500, 100, 'vente'), (15, 31, 'appartement', 'paris', 90000, 15, 'vente'), (16, 32, 'appartement', 'lyon', 123800, 21, 'vente'), (17, 35, 'appartement', 'lyon', 1200, 70, 'vente'), (18, 37, 'appartement', 'lyon', 1500, 100, 'vente'), (19, 43, 'appartement', 'paris', 600, 20, 'location'), (20, 44, 'appartement', 'paris', 750, 30, 'location'), (21, 45, 'appartement', 'bordeaux', 680, 30, 'location'), (22, 46, 'appartement', 'bordeaux', 213000, 40, 'vente'), (23, 47, 'appartement', 'bordeaux', 700, 45, 'location'), (24, 48, 'appartement', 'paris', 195000, 40, 'vente'), (25, 49, 'appartement', 'paris', 250000, 60, 'vente'), (26, 50, 'appartement', 'lyon', 110000, 12, 'vente'), (27, 51, 'appartement', 'lyon', 500, 17, 'location'), (28, 52, 'appartement', 'paris', 800, 40, 'location'), (29, 53, 'appartement', 'paris', 850, 50, 'location'), (30, 54, 'appartement', 'paris', 177000, 40, 'vente'), (31, 55, 'appartement', 'paris', 630, 20, 'location');</code> <br> "logement" <code> -> INSERT INTO `logement` (`id_logement`, `genre`, `ville`, `prix`, `superficie`, `categorie`) VALUES (5067, 'appartement', 'paris', 685000, 61, 'vente'), (5089, 'appartement', 'paris', 115000, 15, 'vente'), (5091, 'maison', 'paris', 1510000, 130, 'vente'), (5122, 'appartement', 'bordeaux', 550, 17, 'location'), (5189, 'appartement', 'lyon', 420, 14, 'location'), (5245, 'appartement', 'paris', 360000, 40, 'vente'), (5246, 'appartement', 'paris', 970, 35, 'location'), (5249, 'appartement', 'lyon', 110000, 16, 'vente'), (5269, 'appartement', 'bordeaux', 171500, 33, 'vente'), (5278, 'appartement', 'paris', 802000, 90, 'vente'), (5324, 'appartement', 'lyon', 1090, 31, 'location'), (5336, 'appartement', 'bordeaux', 229600, 27, 'vente'), (5378, 'appartement', 'bordeaux', 121900, 26, 'vente'), (5412, 'appartement', 'paris', 1680, 40, 'location'), (5636, 'appartement', 'paris', 370000, 37, 'vente'), (5661, 'appartement', 'bordeaux', 248600, 36, 'vente'), (5723, 'maison', 'bordeaux', 370600, 45, 'vente'), (5770, 'appartement', 'paris', 339000, 38, 'vente'), (5778, 'appartement', 'bordeaux', 228600, 43, 'vente'), (5779, 'appartement', 'paris', 1310000, 105, 'vente'), (5786, 'appartement', 'paris', 570, 20, 'location'), (5860, 'appartement', 'bordeaux', 98000, 18, 'vente'), (5869, 'appartement', 'lyon', 683600, 60, 'vente'), (5873, 'appartement', 'lyon', 676700, 65, 'vente'), (5898, 'appartement', 'paris', 1890, 40, 'location'), (5961, 'appartement', 'bordeaux', 2650, 45, 'location'), (5963, 'appartement', 'paris', 520000, 60, 'vente'), (5964, 'appartement', 'paris', 280000, 38, 'vente');</code> <br> "logement_agence" <code> -> INSERT INTO `logement_agence` (`id_logement_agence`, `id_agence`, `id_logement`, `frais`) VALUES (1, 257400, 5067, 34250), (2, 383505, 5067, 30000), (3, 257400, 5089, 5750), (4, 692702, 5089, 7623), (5, 654178, 5091, 75500), (6, 544688, 5091, 56050), (7, 654893, 5122, 700), (8, 608870, 5189, 350), (9, 257400, 5245, 18856), (10, 544688, 5245, 14230), (11, 608870, 5246, 800), (12, 257400, 5249, 5500), (13, 608870, 5249, 7625), (14, 257400, 5269, 9500), (15, 544688, 5269, 8575), (16, 544688, 5278, 25689), (17, 608870, 5278, 40100), (18, 544688, 5324, 600), (19, 544688, 5336, 9542), (20, 608870, 5336, 11480), (21, 504585, 5378, 8652), (22, 608870, 5378, 6095), (23, 257400, 5412, 680), (24, 544688, 5636, 18500), (25, 608870, 5636, 13654), (26, 654893, 5661, 9462), (27, 654178, 5661, 11656), (28, 608870, 5723, 16233), (29, 504585, 5723, 19654), (30, 692702, 5770, 13655), (31, 654178, 5770, 16950), (32, 383505, 5778, 11430), (33, 654658, 5778, 12655), (34, 654178, 5779, 65500), (35, 654658, 5779, 45032), (36, 654178, 5786, 898), (37, 383505, 5786, 520), (38, 257400, 5860, 4900), (39, 654658, 5860, 8905), (40, 544688, 5869, 23685), (41, 654893, 5869, 34180), (42, 257400, 5873, 33835), (43, 257400, 5898, 900), (44, 383505, 5898, 250), (45, 692702, 5898, 1300), (46, 257400, 5961, 1240), (47, 504585, 5961, 300), (48, 692702, 5961, 890), (49, 257400, 5963, 27542), (50, 692702, 5963, 26000), (51, 383505, 5963, 18455);</code> <br> "logement_personne" <code> -> INSERT INTO `logement_personne` (`id_logement_personne`, `id_personne`, `id_logement`) VALUES (1, 40, 5067), (2, 41, 5089), (3, 42, 5091), (4, 2, 5122), (5, 39, 5189), (6, 7, 5245), (7, 8, 5246), (8, 10, 5249), (9, 18, 5269), (10, 21, 5278), (11, 17, 5324), (12, 36, 5336), (13, 20, 5378), (14, 29, 5412), (15, 24, 5636), (16, 34, 5661), (17, 14, 5723), (18, 57, 5770), (19, 26, 5778), (20, 56, 5779), (21, 12, 5786), (22, 11, 5860), (23, 23, 5869), (24, 38, 5873), (25, 33, 5898), (26, 15, 5961), (27, 30, 5963), (28, 56, 5964);</code></li>
+                        <li>Création des tables agence, demande, logement, logement_agence, logement_personne, personne : <br> <code>-> CREATE TABLE IF NOT EXISTS agence(id_agence INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, nom VARCHAR(100), adresse VARCHAR(100));</code> <br> 
+                        <code>-> CREATE TABLE IF NOT EXISTS demande(id_demande INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, id_personne INT(11), genre VARCHAR(100) NOT NULL, ville VARCHAR(100) NOT NULL, budget FLOAT NOT NULL, superficie FLOAT NOT NULL, categorie VARCHAR(100) NOT NULL, key id_personne (id_personne));</code> <br>
+                        <code>-> CREATE TABLE IF NOT EXISTS logement(id_logement INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, genre VARCHAR(100) NOT NULL, ville VARCHAR(100), prix FLOAT NOT NULL, superficie FLOAT NOT NULL, categorie VARCHAR(100) NOT NULL);</code> <br> 
+                        <code>-> CREATE TABLE IF NOT EXISTS logement_agence(id_logement_agence INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, id_agence INT(11), id_logement INT(11), frais FLOAT NULL, KEY id_agence (id_agence), KEY id_logement (id_logement));</code> <br> 
+                        <code>-> CREATE TABLE IF NOT EXISTS logement_personne(id_logement_personne INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, id_personne INT(11), id_logement INT(11), frais FLOAT NULL, KEY id_personne (id_personne), KEY id_logement (id_logement));</code> <br> 
+                        <code>-> CREATE TABLE IF NOT EXISTS personne(id_personne INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, prenom VARCHAR (100) NOT NULL);</code></li>
+                        <li>Création de clés étrangères (via des requêtes) : <br> 
+                        <code>-> ALTER TABLE logement_agence ADD CONSTRAINT FOREIGN KEY (id_logement) REFERENCES logement (id_logment), ADD CONSTRAINT FOREIGN KEY (id_agence) REFERENCES agence (id_agence);</code> <br> 
+                        <code>-> ALTER TABLE logement_personne ADD CONSTRAINT FOREIGN KEY (id_logement) REFERENCES logement (id_logment), ADD CONSTRAINT FOREIGN KEY (id_personne) REFERENCES personne (id_personne);</code> <br> 
+                        <code>-> ALTER TABLE demande ADD CONSTRAINT FOREIGN KEY (id_personne) REFERENCES personne (id_personne);</code></li>
+                        <li>Insertion des données dans les tables : <br> 
+                        "agence"<code> -> INSERT INTO `agence` (`id_agence`, `nom`, `adresse`) VALUES (257400, 'logic-immo', 'rue logic'), (383505, 'century21', 'rue century'), (504585, 'laforet', 'rue laforet'), (544688, 'fnaim', 'rue fnaim'), (608870, 'orpi', 'rue orpi'), (654178, 'foncia', 'rue foncia'), (654658, 'guy-hoquet', 'rue guy-hoquet'), (654893, 'seloger', 'rue seloger'), (692702, 'bouygues immobilier', 'rue bouygues');</code> <br> 
+                        "personne" <code> -> INSERT INTO `personne` (`id_personne`, `prenom`) VALUES (1, 'william'), (2, 'gaetan'), (3, 'mehdi'), (4, 'charles'), (5, 'brigitte'), (6, 'sarah'), (7, 'lucas'), (8, 'quentin'), (9, 'patrick'), (10, 'emmanuel'), (11, 'elodie'), (12, 'agathe'), (13, 'valentine'), (14, 'charlotte'), (15, 'alice'), (16, 'samuel'), (17, 'mathieu'), (18, 'noemie'), (19, 'simon'), (20, 'florian'), (21, 'clement'), (22, 'yvon'), (23, 'lea'), (24, 'chloe'), (25, 'camille'), (26, 'alexandre'), (27, 'julie'), (28, 'leo'), (29, 'antoine'), (30, 'lola'), (31, 'celia'), (32, 'anna'), (33, 'caroline'), (34, 'adele'), (35, 'sabrina'), (36, 'nathalie'), (37, 'franck'), (38, 'tom'), (39, 'johan'), (40, 'priscillia'), (41, 'assia'), (42, 'nathan'), (43, 'aurore'), (44, 'marie'), (45, 'oceane'), (46, 'enzo'), (47, 'ines'), (48, 'hugo'), (49, 'jonathan'), (50, 'axelle'), (51, 'morgane'), (52, 'melissa'), (53, 'kevin'), (54, 'ophelie'), (55, 'victoria'), (56, 'alexis'), (57, 'robin');</code> <br> 
+                        "demande"<code> -> INSERT INTO `demande` (`id_demande`, `id_personne`, `genre`, `ville`, `budget`, `superficie`, `categorie`) VALUES (1, 1, 'appartement', 'paris', 530000, 120, 'vente'), (2, 3, 'appartement', 'bordeaux', 120000, 18, 'vente'), (3, 4, 'appartement', 'bordeaux', 145000, 21, 'vente'), (4, 5, 'appartement', 'bordeaux', 152000, 26, 'vente'), (5, 6, 'appartement', 'lyon', 200000, 55, 'vente'), (6, 7, 'appartement', 'paris', 400000, 55, 'vente'), (7, 9, 'appartement', 'paris', 171000, 40, 'vente'), (8, 13, 'appartement', 'paris', 163000, 25, 'vente'), (9, 16, 'appartement', 'paris', 132000, 15, 'vente'), (10, 19, 'appartement', 'paris', 350000, 80, 'vente'), (11, 22, 'appartement', 'lyon', 600, 20, 'location'), (12, 25, 'appartement', 'lyon', 188000, 65, 'vente'), (13, 27, 'appartement', 'paris', 400, 15, 'location'), (14, 28, 'appartement', 'paris', 330500, 100, 'vente'), (15, 31, 'appartement', 'paris', 90000, 15, 'vente'), (16, 32, 'appartement', 'lyon', 123800, 21, 'vente'), (17, 35, 'appartement', 'lyon', 1200, 70, 'vente'), (18, 37, 'appartement', 'lyon', 1500, 100, 'vente'), (19, 43, 'appartement', 'paris', 600, 20, 'location'), (20, 44, 'appartement', 'paris', 750, 30, 'location'), (21, 45, 'appartement', 'bordeaux', 680, 30, 'location'), (22, 46, 'appartement', 'bordeaux', 213000, 40, 'vente'), (23, 47, 'appartement', 'bordeaux', 700, 45, 'location'), (24, 48, 'appartement', 'paris', 195000, 40, 'vente'), (25, 49, 'appartement', 'paris', 250000, 60, 'vente'), (26, 50, 'appartement', 'lyon', 110000, 12, 'vente'), (27, 51, 'appartement', 'lyon', 500, 17, 'location'), (28, 52, 'appartement', 'paris', 800, 40, 'location'), (29, 53, 'appartement', 'paris', 850, 50, 'location'), (30, 54, 'appartement', 'paris', 177000, 40, 'vente'), (31, 55, 'appartement', 'paris', 630, 20, 'location');</code> <br> 
+                        "logement" <code> -> INSERT INTO `logement` (`id_logement`, `genre`, `ville`, `prix`, `superficie`, `categorie`) VALUES (5067, 'appartement', 'paris', 685000, 61, 'vente'), (5089, 'appartement', 'paris', 115000, 15, 'vente'), (5091, 'maison', 'paris', 1510000, 130, 'vente'), (5122, 'appartement', 'bordeaux', 550, 17, 'location'), (5189, 'appartement', 'lyon', 420, 14, 'location'), (5245, 'appartement', 'paris', 360000, 40, 'vente'), (5246, 'appartement', 'paris', 970, 35, 'location'), (5249, 'appartement', 'lyon', 110000, 16, 'vente'), (5269, 'appartement', 'bordeaux', 171500, 33, 'vente'), (5278, 'appartement', 'paris', 802000, 90, 'vente'), (5324, 'appartement', 'lyon', 1090, 31, 'location'), (5336, 'appartement', 'bordeaux', 229600, 27, 'vente'), (5378, 'appartement', 'bordeaux', 121900, 26, 'vente'), (5412, 'appartement', 'paris', 1680, 40, 'location'), (5636, 'appartement', 'paris', 370000, 37, 'vente'), (5661, 'appartement', 'bordeaux', 248600, 36, 'vente'), (5723, 'maison', 'bordeaux', 370600, 45, 'vente'), (5770, 'appartement', 'paris', 339000, 38, 'vente'), (5778, 'appartement', 'bordeaux', 228600, 43, 'vente'), (5779, 'appartement', 'paris', 1310000, 105, 'vente'), (5786, 'appartement', 'paris', 570, 20, 'location'), (5860, 'appartement', 'bordeaux', 98000, 18, 'vente'), (5869, 'appartement', 'lyon', 683600, 60, 'vente'), (5873, 'appartement', 'lyon', 676700, 65, 'vente'), (5898, 'appartement', 'paris', 1890, 40, 'location'), (5961, 'appartement', 'bordeaux', 2650, 45, 'location'), (5963, 'appartement', 'paris', 520000, 60, 'vente'), (5964, 'appartement', 'paris', 280000, 38, 'vente');</code> <br> 
+                        "logement_agence" <code> -> INSERT INTO `logement_agence` (`id_logement_agence`, `id_agence`, `id_logement`, `frais`) VALUES (1, 257400, 5067, 34250), (2, 383505, 5067, 30000), (3, 257400, 5089, 5750), (4, 692702, 5089, 7623), (5, 654178, 5091, 75500), (6, 544688, 5091, 56050), (7, 654893, 5122, 700), (8, 608870, 5189, 350), (9, 257400, 5245, 18856), (10, 544688, 5245, 14230), (11, 608870, 5246, 800), (12, 257400, 5249, 5500), (13, 608870, 5249, 7625), (14, 257400, 5269, 9500), (15, 544688, 5269, 8575), (16, 544688, 5278, 25689), (17, 608870, 5278, 40100), (18, 544688, 5324, 600), (19, 544688, 5336, 9542), (20, 608870, 5336, 11480), (21, 504585, 5378, 8652), (22, 608870, 5378, 6095), (23, 257400, 5412, 680), (24, 544688, 5636, 18500), (25, 608870, 5636, 13654), (26, 654893, 5661, 9462), (27, 654178, 5661, 11656), (28, 608870, 5723, 16233), (29, 504585, 5723, 19654), (30, 692702, 5770, 13655), (31, 654178, 5770, 16950), (32, 383505, 5778, 11430), (33, 654658, 5778, 12655), (34, 654178, 5779, 65500), (35, 654658, 5779, 45032), (36, 654178, 5786, 898), (37, 383505, 5786, 520), (38, 257400, 5860, 4900), (39, 654658, 5860, 8905), (40, 544688, 5869, 23685), (41, 654893, 5869, 34180), (42, 257400, 5873, 33835), (43, 257400, 5898, 900), (44, 383505, 5898, 250), (45, 692702, 5898, 1300), (46, 257400, 5961, 1240), (47, 504585, 5961, 300), (48, 692702, 5961, 890), (49, 257400, 5963, 27542), (50, 692702, 5963, 26000), (51, 383505, 5963, 18455);</code> <br> 
+                        "logement_personne" <code> -> INSERT INTO `logement_personne` (`id_logement_personne`, `id_personne`, `id_logement`) VALUES (1, 40, 5067), (2, 41, 5089), (3, 42, 5091), (4, 2, 5122), (5, 39, 5189), (6, 7, 5245), (7, 8, 5246), (8, 10, 5249), (9, 18, 5269), (10, 21, 5278), (11, 17, 5324), (12, 36, 5336), (13, 20, 5378), (14, 29, 5412), (15, 24, 5636), (16, 34, 5661), (17, 14, 5723), (18, 57, 5770), (19, 26, 5778), (20, 56, 5779), (21, 12, 5786), (22, 11, 5860), (23, 23, 5869), (24, 38, 5873), (25, 33, 5898), (26, 15, 5961), (27, 30, 5963), (28, 56, 5964);</code></li>
+                        <li>
+                            Affichez les noms des agences : <br>
+                            <code>-> SELECT nom FROM agence;</code>
+
+                        </li>
+                        <li> 
+                            Affichez le premier enregistrement de la table logement : <br>
+                            <code>-> SELECT * FROM logement LIMIT 1;</code> <br> 
+                            <code>-> SELECT * FROM logement WHERE id_logement IN (SELECT MIN(id_logement) FROM logement);</code>
+                    
+                        </li>
+                        <li>
+                            Affichez le nombre de logements (Alias : Nombre_de_logements) :<br>
+                            <code>-> SELECT COUNT(*) nombre_de_logements FROM logement;</code>
+                        </li>
+                        <li>
+                            Affichez les logements à vendre à moins de 150 000 € dans l'ordre croissant des prix :<br>
+                            <code>-> SELECT * FROM logement WHERE prix < 150000 ORDER BY prix ASC; </code>
+                        </li>
+                        <li>
+                            Afficher le nombre de logements à la location (alias : 'nombre') :<br>
+                            <code>-> SELECT COUNT(*) nombre_logement_location FROM logement WHERE categorie = 'location';</code> <br>
+                            <code>-> SELECT COUNT(*) nombre_logement_location FROM logement WHERE categorie LIKE 'location%'; </code>
+                        </li>
+                        <li>
+                            Afficher les villes différentes recherchées par les personnes demandeuses d'un logement :<br>
+                            <code>-> SELECT DISTINCT(ville) FROM demande;</code>
+                        </li>
+                        <li>
+                            Affichez le nombre de biens à vendre par ville : <br>
+                            <code>-> SELECT ville, COUNT(*) logement_a_vendre FROM logement WHERE categorie LIKE 'vente%' GROUP BY ville;</code>
+                        </li>
+                        <li>
+                            Quels sont les id des logements destinés à la location ? :<br>
+                            <code>-> SELECT id_logement, genre FROM logement WHERE categorie LIKE 'location%';</code>
+                        </li>
+                        <li>
+                            Quels sont les id des logements entre 20 et 30m² ? :<br>
+                            <code>-> SELECT id_logement, genre FROM logement WHERE superficie BETWEEN 20 AND 30; </code>
+                        </li>
+                        <li>
+                            Quel est le prix du vendeur de logement le moins cher à vendre ? :<br>
+                            <code>-> SELECT MIN(prix) logement_le_moins_cher FROM logement WHERE categorie LIKE 'vente%';</code> <br> 
+                            <code>-> SELECT * FROM logement WHERE prix IN (SELECT MIN(prix) FROM logement WHERE categorie LIKE 'vente%');</code>
+                        </li>
+                        <li>
+                            Dans quelle ville se trouve les maisons à vendre ? :<br>
+                            <code>-> SELECT ville, COUNT(*) maison_a_vendre FROM logement WHERE categorie LIKE 'vente%' AND genre LIKE 'maison%' GROUP BY ville;</code>
+                        </li>
+                        <li>
+                            L'agence Orpi souhaite diminuer les frais qu'elle applique sur le logement ayant l'id «5246». Passer les frais de ce logement de 800 à 730€ :<br>
+                            <code>-> UPDATE `logement_agence` SET `frais`= 730 WHERE id_agence IN(SELECT id_agence FROM agence WHERE nom LIKE 'orpi%') AND id_logement = 5246;</code>
+                        </li>
+                        <li>
+                            Quels sont les logements gérés par l'agence « laforet » :<br>
+                            <code>-> SELECT a.nom, la.id_logement FROM agence a, logement_agence la WHERE a.nom LIKE 'laforet%' AND la.id_agence = a.id_agence;</code>
+                        </li>
+                        <li>
+                            Affichez le nombre de propriétaires dans la ville de Paris (Alias : Nombre propriétaire parisien) :<br>
+                            <code>-> SELECT COUNT(*) nombre_proprio_paris FROM logement WHERE categorie LIKE 'vente%' AND ville LIKE 'paris%';</code> <br>
+                            <code>-> SELECT COUNT(*) nombre_proprio_paris FROM personne WHERE id_personne IN(SELECT id_personne FROM logement_personne WHERE id_logement IN(SELECT id_logement FROM logement WHERE ville LIKE 'paris%' AND categorie LIKE 'vente%'));</code> <br>
+                            <code>-> SELECT COUNT(*) nombre_proprio_paris FROM personne WHERE id_personne IN(SELECT id_personne FROM logement_personne WHERE id_logement IN(SELECT id_logement FROM logement WHERE ville = 'paris' AND categorie = 'vente'));</code> <br>
+                            <code>-> SELECT COUNT(DISTINCT(logement_personne.id_personne)) nombre_proprio_paris FROM logement_personne, logement WHERE logement_personne.id_logement = logement.id_logement AND logement.ville = 'paris' AND logement.categorie = 'vente';</code>
+                        </li>
+                        <li>
+                            Afficher les infos des trois premières personnes souhaitant acheter un logement :<br>
+                            <code>-> SELECT * FROM demande WHERE categorie LIKE 'vente%' LIMIT 0,3;</code> <br>
+                            <code>-> SELECT * FROM personne WHERE id_personne IN(SELECT id_personne FROM demande WHERE categorie LIKE 'vente%') LIMIT 0,3;</code> <br>
+                            <code>-> SELECT * FROM personne, demande WHERE personne.id_personne = demande.id_personne AND demande.categorie = 'vente' ORDER BY demande.id_demande LIMIT 0,3;</code>
+                        </li>
+                        <li>
+                            Affichez les noms des agences vendeuses pour le logement ayant la référence « 5770 » ::<br>
+                            <code>-> SELECT a.nom, l.id_logement FROM logement l, logement_agence la, agence a WHERE la.id_logement = l.id_logement AND a.id_agence = la.id_agence AND la.id_logement = 5770 AND l.categorie LIKE 'vente%';</code>
+                        </li>
+                        <li>
+                            Affichez les prénoms des personnes souhaitant accéder à un logement sur la ville de Lyon ::<br>
+                            <code>-> SELECT p.prenom, d.categorie FROM personne p, demande d WHERE p.id_personne = d.id_personne AND d.ville LIKE 'lyon%';</code> <br>
+                            <code>-> SELECT * FROM personne WHERE id_personne IN(SELECT id_personne FROM demande WHERE ville = 'lyon');</code>
+                        </li>
+                        <li>
+                            Affichez les prénoms des personnes souhaitant accéder à un logement en location sur la ville de Paris :<br>
+                            <code>-> SELECT p.prenom, d.categorie FROM personne p, demande d WHERE p.id_personne = d.id_personne AND d.ville LIKE 'paris%' AND categorie LIKE 'location%';</code> <br> 
+                            <code>-> SELECT * FROM personne WHERE id_personne IN(SELECT id_personne FROM demande WHERE ville = 'lyon' AND categorie = 'location');</code>
+                        </li>
+                        <li>
+                            Affichez les prénoms des personnes souhaitant acheter un logement de la plus grande à la plus petite superficie :<br>
+                            <code>-> SELECT p.prenom, d.superficie FROM personne p, demande d WHERE p.id_personne = d.id_personne AND categorie LIKE 'vente%' ORDER BY superficie DESC;</code>
+                        </li>
+                        <li>
+                            Quels sont les prix finaux proposés par les agences pour la maison à la vente ayant la référence « 5091 » ? (Alias : prix frais d'agence inclus) :<br>
+                            <code>-> SELECT (l.prix + la.frais) prix_agence_frais_inclus, a.nom FROM logement l, logement_agence la, agence a WHERE la.id_logement = 5091 AND l.id_logement = la.id_logement AND la.id_agence = a.id_agence;</code>
+                        </li>
+                        <li>
+                            Indiquez le prix total (prix et frais d'agence) pour le logement ayant la référence « 5873 »<br>
+                            <code>-> SELECT (l.prix + la.frais) prix_agence_frais_inclus, a.nom FROM logement l, logement_agence la, agence a WHERE la.id_logement = 5873 AND l.id_logement = la.id_logement AND la.id_agence = a.id_agence;</code> <br> 
+                            <code>-> SELECT logement.prix + logement_agence.frais prix_agence_frais_inclus FROM logement, logement_agence WHERE logement.id_logement = 5873 AND logement_agence.id_logement = 5873;</code>
+                        </li>
+                        <li>
+                            Si l'ensemble des logements étaient vendus ou loués demain, quel serait le bénéfice généré grâce aux frais d'agence et pour chaque agence (Alias : benefice, classement : par ordre croissant des gains) :<br>
+                            <code>-> SELECT SUM(la.frais) benefice, a.nom FROM logement_agence la, agence a WHERE a.id_agence = la.id_agence GROUP BY la.id_agence ORDER BY benefice;</code> <br>
+                            <code>-> SELECT SUM(logement_agence.frais) benefice FROM logement_agence GROUP BY logement_agence.id_agence ORDER BY benefice;</code>
+                        </li>
+                        <li>
+                            Affichez les id des biens en location, les prix, suivis des frais d'agence (classement : dans l'ordre croissant des prix) :<br>
+                            <code>-> SELECT l.id_logement, l.prix, la.frais FROM logement l, logement_agence la WHERE l.id_logement = la.id_logement AND l.categorie LIKE 'location%' ORDER BY l.prix;</code> <br>
+                        </li>
+                        <li>
+                            Quel est le prénom du propriétaire proposant le logement le moins cher à louer ? :<br>
+                            <code>-> SELECT p.prenom, l.id_logement, l.genre, l.categorie, l.prix FROM personne p, logement l, logement_personne lp WHERE l.id_logement = lp.id_logement AND p.id_personne = lp.id_personne AND l.categorie LIKE 'location%' AND l.prix IN(SELECT MIN(l.prix) FROM logement l);</code>
+                        </li>
+                        <li>
+                            Quel est le nom de l'agence proposant le logement le moins cher à louer ? : <br>
+                            <code>-> SELECT a.nom, l.id_logement, l.genre, l.categorie, l.prix FROM agence a, logement l, logement_agence la WHERE l.id_logement = la.id_logement AND a.id_agence = la.id_agence AND l.categorie LIKE 'location%' AND l.prix IN(SELECT MIN(l.prix) FROM logement l);</code> <br>
+                            <code>-> SELECT agence.nom, logement.prix FROM agence, logement, logement_agence WHERE logement_agence.id_agence = agence.id_agence AND logement_agence.id_logement = logement.id_logement AND logement.categorie LIKE 'location%' ORBER BY prix LIMIT 1;</code> <br> 
+                            <!-- <code>-> SELECT nom FROM agence WHERE id_agence IN(SELECT id_agence FROM logement_agence WHERE id_logement IN(SELECT id_logement FROM loegment WHERE categorie LIKE 'location%' ORDER BY prix)) LIMIT 1;</code> -->
+                        </li>
+                        <li>
+                            Affichez le prénom et la ville où se trouve le logement de chaque propriétaire : <br>
+                            <code>-> SELECT p.prenom, l.ville FROM logement l, personne p, logement_personne lp WHERE p.id_personne = lp.id_personne AND l.id_logement = lp.id_logement AND l.categorie LIKE 'vente%';</code>
+                        </li>
+                        <li>
+                            Obtenir la liste des 10 villes les plus peuplées en 2012 :<br>
+                            <code>-> </code>
+                        </li>
+                        <li>
+                            Obtenir la liste des 50 villes ayant la plus faible superficie :<br>
+                            <code>-> </code>
+                        </li>
+                        <li>
+                            Obtenir la liste des départements d’outres-mer, c’est-à-dire ceux dont le numéro de département commencent par “97” :<br>
+                            <code>-> </code>
+                        </li>
+                        <li>
+                            Obtenir le nom des 10 villes les plus peuplées en 2012, ainsi que le nom du département associé :<br>
+                            <code>-> </code>
+                        </li>
                     </ul>
                 </div>
             </div>      
