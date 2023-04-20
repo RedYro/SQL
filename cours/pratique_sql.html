@@ -317,23 +317,7 @@
                         </li>
                         <li>
                             Affichez le prénom et la ville où se trouve le logement de chaque propriétaire : <br>
-                            <code>-> SELECT p.prenom, l.ville FROM logement l, personne p, logement_personne lp WHERE p.id_personne = lp.id_personne AND l.id_logement = lp.id_logement AND l.categorie LIKE 'vente%';</code>
-                        </li>
-                        <li>
-                            Obtenir la liste des 10 villes les plus peuplées en 2012 :<br>
-                            <code>-> </code>
-                        </li>
-                        <li>
-                            Obtenir la liste des 50 villes ayant la plus faible superficie :<br>
-                            <code>-> </code>
-                        </li>
-                        <li>
-                            Obtenir la liste des départements d’outres-mer, c’est-à-dire ceux dont le numéro de département commencent par “97” :<br>
-                            <code>-> </code>
-                        </li>
-                        <li>
-                            Obtenir le nom des 10 villes les plus peuplées en 2012, ainsi que le nom du département associé :<br>
-                            <code>-> </code>
+                            <code>-> SELECT p.prenom, l.ville, p.id_personne FROM logement l, personne p, logement_personne lp WHERE p.id_personne = lp.id_personne AND l.id_logement = lp.id_logement AND l.categorie LIKE 'vente%' ORDER BY l.ville;</code>
                         </li>
                     </ul>
                 </div>
